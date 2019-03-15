@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="chess-auth-common" />
+        <module name="chess-auth-service" />
+        <module name="chess-common" />
+        <module name="chess-email" />
+        <module name="chess-gateway" />
+        <module name="chess-paly" />
+        <module name="chess-registery" />
+        <module name="chess-user-interface" />
+        <module name="chess-user-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="chess-auth" target="1.8" />
+      <module name="chess-auth-common" target="1.8" />
+      <module name="chess-auth-service" target="1.8" />
+      <module name="chess-common" target="1.8" />
+      <module name="chess-email" target="1.8" />
+      <module name="chess-gateway" target="1.8" />
+      <module name="chess-paly" target="1.8" />
+      <module name="chess-registery" target="1.8" />
+      <module name="chess-user" target="1.8" />
+      <module name="chess-user-interface" target="1.8" />
+      <module name="chess-user-service" target="1.8" />
+      <module name="chessparent" target="1.8" />
+      <module name="test" target="1.8" />
+      <module name="test-exception" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

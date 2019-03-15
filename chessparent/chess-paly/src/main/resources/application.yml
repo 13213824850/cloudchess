@@ -1,0 +1,9 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: chess-paly
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
