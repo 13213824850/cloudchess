@@ -1,8 +1,10 @@
 package com.chess;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @Auther: huang yuan li
@@ -12,6 +14,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableRabbit
+@EnableFeignClients(basePackages = "com.chess")
 public class ChessPlayApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChessPlayApplication.class);

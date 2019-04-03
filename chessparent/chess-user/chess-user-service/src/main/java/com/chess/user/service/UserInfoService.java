@@ -14,5 +14,6 @@ public interface UserInfoService {
 	UserInfo queryUserInfo(String userName, String password);
 	
 	UserInfo getUserInfo(String userName);
+	Msg getUserpro(String userName);
 	Msg activeAccount(ActionCode acCode);
 }

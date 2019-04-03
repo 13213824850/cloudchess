@@ -12,6 +12,8 @@
         <module name="chess-email" />
         <module name="chess-gateway" />
         <module name="chess-paly" />
+        <module name="chess-rank-his-interface" />
+        <module name="chess-rank-his-service" />
         <module name="chess-registery" />
         <module name="chess-user-interface" />
         <module name="chess-user-service" />
@@ -20,11 +22,16 @@
     <bytecodeTargetLevel>
       <module name="chess-auth" target="1.8" />
       <module name="chess-auth-common" target="1.8" />
+      <module name="chess-auth-interface" target="1.8" />
       <module name="chess-auth-service" target="1.8" />
       <module name="chess-common" target="1.8" />
       <module name="chess-email" target="1.8" />
       <module name="chess-gateway" target="1.8" />
+      <module name="chess-match" target="1.8" />
       <module name="chess-paly" target="1.8" />
+      <module name="chess-rank-his" target="1.8" />
+      <module name="chess-rank-his-interface" target="1.8" />
+      <module name="chess-rank-his-service" target="1.8" />
       <module name="chess-registery" target="1.8" />
       <module name="chess-user" target="1.8" />
       <module name="chess-user-interface" target="1.8" />

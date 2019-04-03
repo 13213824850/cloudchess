@@ -16,6 +16,8 @@ public enum ExceptionEnum {
 	UNINVALID(106, "无效的token"),
 	GETPRIFAIL(107, "获取私钥失败"),
 	PARAMVALIDFAIL(110, "数据校验失败"),
+	MATCHOVERTIME(201,"对局已过期"),
+	REFUSE_MATCH(202,"玩家拒绝"),
 ;
 	//异常状态码和消息
 	private int code;

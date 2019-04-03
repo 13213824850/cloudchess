@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/chess-email/chess-email.iml" filepath="$PROJECT_DIR$/chess-email/chess-email.iml" />
       <module fileurl="file://$PROJECT_DIR$/chess-gateway/chess-gateway.iml" filepath="$PROJECT_DIR$/chess-gateway/chess-gateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/chess-paly/chess-paly.iml" filepath="$PROJECT_DIR$/chess-paly/chess-paly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his.iml" filepath="$PROJECT_DIR$/chess-rank-his/chess-rank-his.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/chess-rank-his-interface.iml" filepath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/chess-rank-his-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/chess-rank-his-service.iml" filepath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/chess-rank-his-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/chess-registery/chess-registery.iml" filepath="$PROJECT_DIR$/chess-registery/chess-registery.iml" />
       <module fileurl="file://$PROJECT_DIR$/chess-user/chess-user.iml" filepath="$PROJECT_DIR$/chess-user/chess-user.iml" />
       <module fileurl="file://$PROJECT_DIR$/chess-user/chess-user-interface/chess-user-interface.iml" filepath="$PROJECT_DIR$/chess-user/chess-user-interface/chess-user-interface.iml" />

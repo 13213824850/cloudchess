@@ -14,6 +14,8 @@ import com.chess.user.vo.UserLogin;
 
 import io.swagger.annotations.ApiOperation;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 public class UserInfoControllelr {
 
@@ -45,6 +47,12 @@ public class UserInfoControllelr {
 	@GetMapping("/test")
 	public String test() {
 		return "test";
+	}
+
+	//查询个人信息
+	@GetMapping("getUserInfo")
+	public Msg getUserpro(@RequestHeader("username")String userName){
+		return userInfoService.getUserpro(userName);
 	}
 /*	@GetMapping("/getUserInfo/{userName}")
 	public Msg getUserById(@PathVariable("userName") String userName) {

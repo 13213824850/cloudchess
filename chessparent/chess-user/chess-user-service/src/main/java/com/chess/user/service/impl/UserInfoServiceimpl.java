@@ -38,10 +38,10 @@ public class UserInfoServiceimpl implements UserInfoService {
 	private RedisTemplate redisTemplate;
 	private final String retry_send_mail = "retry:send:mail:";
 
-	/*
-	 * @Autowired private RankService rankService;
-	 * 
-	 * @Autowired private UserInfoMapper userInfoMapper;
+	/**
+	 * @Auther:huang yuan li
+	 * @Description:
+	 * @date: Create in ${TIME} ${DATE}
 	 */
 	@Override
 	public Msg addUser(UserInfo userInfo) {
@@ -105,10 +105,18 @@ public class UserInfoServiceimpl implements UserInfoService {
 	public UserInfo getUserInfo(String userName) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setUserName(userName);
-		userInfo = userInfoMapper.selectOne(userInfo);
-		UserInfo userInfo1 = userInfoMapper.selectOne(userInfo);
-		log.info("userinfo{}/n{}",userInfo,userInfo1);
-		return userInfo;
+		UserInfo userInfoResult = userInfoMapper.selectOne(userInfo);
+		log.info("userInfoResult{}/n{}",userInfoResult);
+		return userInfoResult;
+	}
+
+	@Override
+	public Msg getUserpro(String userName) {
+		UserInfo userInfo = getUserInfo(userName);
+		if(userInfo == null){
+			throw new ChessException(ExceptionEnum.NOTFINDUSER);
+		}
+		return Msg.success().add("userInfo",userInfo);
 	}
 
 	// 激活账号

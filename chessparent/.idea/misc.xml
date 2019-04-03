@@ -4,11 +4,14 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-auth/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
         <option value="$PROJECT_DIR$/chess-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-match/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-rank-his/pom.xml" />
         <option value="$PROJECT_DIR$/chess-user/test-exception/pom.xml" />
         <option value="$PROJECT_DIR$/test/pom.xml" />
       </set>

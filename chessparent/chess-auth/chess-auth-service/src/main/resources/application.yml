@@ -15,6 +15,6 @@ chess:
     secret: chess@Login(Auth}*^31)&yun6%f3q2 # 登录校验的密钥
     pubKeyPath: /chessauthkey/id_rsa.pub # 公钥地址
     priKeyPath: /chessauthkey/id_rsa.pri # 私钥地址
-    expire: 30 # 过期时间,单位分钟
+    expire: 600 # 过期时间,单位分钟
     cookieName: CHESS_TOKEN
-    cookieMaxAge: 1800
+    cookieMaxAge: 36000

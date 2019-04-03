@@ -130,7 +130,9 @@
 		<module>chess-common</module>
 		<module>chess-email</module>
 		<module>chess-auth</module>
-        <module>chess-auth</module>
         <module>chess-paly</module>
-    </modules>
+        <module>chess-match</module>
+        <module>chess-rank-his</module>
+		<module>chess-rank-his</module>
+	</modules>
 </project>

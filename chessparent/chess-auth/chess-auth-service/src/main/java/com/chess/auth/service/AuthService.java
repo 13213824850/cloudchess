@@ -1,5 +1,6 @@
 package com.chess.auth.service;
 
+import com.chess.auth.client.FriendClient;
 import com.chess.auth.client.UserClient;
 import com.chess.auth.enty.UserInfoToken;
 import com.chess.auth.properties.JwtProperties;
@@ -28,6 +29,8 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     @Autowired
     private UserClient userClient;
+    @Autowired
+    private FriendClient friendClient;
     @Autowired
     private JwtProperties props;
     public String  login(UserLogin userLogin){

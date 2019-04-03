@@ -2,13 +2,21 @@ server:
   port: 8086
 spring:
   application:
-    name: chess-email
+    name: chess-email-match
   rabbitmq:
     virtual-host: /
     username: guest 
     password: guest
     host: 120.78.94.125
     port: 5672
+    listener:
+      simple:
+        retry:
+          enabled: false #是否开启消费者重试
+          max-attempts: 3   #最大重试次数
+          initial-interval: 3000 #重试间隔时间（单位毫秒）
+      direct:
+        default-requeue-rejected: false #重试次数超过上面的设置之后是否丢弃
 #  redis:
 #    host: localhost
   mail: 
@@ -22,6 +30,14 @@ spring:
         starttls:
           enable: true  # 需要TLS认证 保证发送邮件安全验证
           required: true
-chess: 
+chess:
   register: 
     url: http://localhost:8001/activeAcount
+  matchConfirm:
+    key: matchConfirm  #确定匹配的key
+    expir: 30 #过期时间秒
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+    registry-fetch-interval-seconds: 5

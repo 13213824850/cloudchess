@@ -3,6 +3,33 @@ server:
 spring:
   application:
     name: chess-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: neo_route
+        uri: lb://CHESS-USER-SERVICE
+        predicates:
+        - Path=/user/**
+        filters:
+        - RewritePath=/user/(?<segment>.*), /$\{segment}
+      - id: neo_route
+        uri: lb://CHESS-EMAIL-MATCH
+        predicates:
+        - Path=/matchGame/**
+        filters:
+        - RewritePath=/matchGame/(?<segment>.*), /$\{segment}
+      - id: neo_route
+        uri: lb://CHESS-AUTH-CENTER
+        predicates:
+        - Path=/auth/**
+        filters:
+        - RewritePath=/auth/(?<segment>.*), /$\{segment}
+      - id: websocket_route
+        uri: lb:ws://CHESS-PALY
+        predicates:
+        - Path=/play/**
+        filters:
+        - RewritePath=/play/(?<segment>.*), /$\{segment}
 eureka:
   client:
     service-url:
@@ -12,37 +39,39 @@ eureka:
     prefer-ip-address: true
     ip-address: 127.0.0.1
     instance-id: ${spring.application.name}:${server.port}
-zuul:
-  prefix: /api # 添加路由前缀
-  retryable: true
-  routes:
-    CHESS-USER-SERVICE: /user/**
-    CHESS-AUTH-CENTER: /auth/**
-  sensitive-headers:
-  add-host-header: true
-  host:
-    connect-timeout-millis: 3000
-    socket-timeout-millis: 3000
-ribbon:
-  ConnectTimeout: 3000 # 连接超时时间(ms)
-  ReadTimeout: 3000 # 通信超时时间(ms)
-  OkToRetryOnAllOperations: true # 是否对所有操作重试
-  MaxAutoRetriesNextServer: 0 # 同一服务不同实例的重试次数
-  MaxAutoRetries: 0 # 同一实例的重试次数
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutInMillisecond: 5000 # 熔断超时时长：10000ms
+#zuul:
+#  prefix: /api # 添加路由前缀
+#  retryable: true
+#  routes:
+#    CHESS-USER-SERVICE: /user/**
+#    CHESS-AUTH-CENTER: /auth/**
+#    CHESS-PLAY: /play/**
+#  sensitive-headers:
+#  add-host-header: true
+#  host:
+#    connect-timeout-millis: 3000
+#    socket-timeout-millis: 3000
+#ribbon:
+#  ConnectTimeout: 3000 # 连接超时时间(ms)
+#  ReadTimeout: 3000 # 通信超时时间(ms)
+#  OkToRetryOnAllOperations: true # 是否对所有操作重试
+#  MaxAutoRetriesNextServer: 0 # 同一服务不同实例的重试次数
+#  MaxAutoRetries: 0 # 同一实例的重试次数
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMillisecond: 5000 # 熔断超时时长：10000ms
 chess:
   jwt:
     pubKeyPath: /chessauthkey/id_rsa.pub # 公钥地址
     cookieName: CHESS_TOKEN # cookie的名称
   filter:
     allowPaths:
-    - /api/auth
+    - /auth/accredit
+    - /user/register
 logging:
   level:
     root: info
