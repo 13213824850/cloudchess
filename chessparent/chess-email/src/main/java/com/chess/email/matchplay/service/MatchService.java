@@ -63,4 +63,7 @@ public class MatchService {
         redisTemplate.delete(matchConfirm + userName);
         return Msg.success();
     }
+
+    public Msg lauchPlay(String userName, String oppUserName) {
+    }
 }

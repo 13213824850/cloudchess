@@ -1,10 +1,10 @@
 package com.chess.email.matchplay.init;
 
+import com.chess.common.cheserules.Rule;
 import com.chess.common.constant.Constant;
 import com.chess.common.enumcodes.GameMessage;
-import com.chess.common.vo.CheseIndex;
-import com.chess.common.vo.MatchInfo;
-import com.chess.email.matchplay.task.MyRunable;
+import com.chess.common.util.RuleUtil;
+import com.chess.common.vo.*;
 import com.chess.email.matchplay.vo.MatchGameInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
@@ -15,8 +15,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.time.Instant;
+import java.util.Iterator;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,7 +40,7 @@ public class EndApplicationStart implements CommandLineRunner {
     private int expirTime;
     // 匹配线程
     private static ScheduledExecutorService sec = Executors.newSingleThreadScheduledExecutor();
-    private int match_Play_againTime = 30;// 间隔几秒匹配一次
+    private int match_Play_againTime = 3;// 间隔几秒匹配一次
     private int overTime = 180000;// 超时时间ms
 
     @Override
@@ -49,17 +50,19 @@ public class EndApplicationStart implements CommandLineRunner {
             @Override
             public void run() {
                 log.info("开始匹配");
-                matchProcess();
+                matchProcess(GameMessage.MatchGame.getMessageCode());
                 log.info("开始rank");
                 //matchRank();
                 log.info("本轮结匹配结束");
                 //显示列表
                 //showGameList();
+                //检查超时
+                checkOverTime();
             }
         }, 1, match_Play_againTime, TimeUnit.SECONDS);
     }
 
-    protected void matchProcess() {
+    protected void matchProcess(int matchType) {
         //查询匹配池
         Set<Object> matchInfos = redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).range(0, -1);
         int matchSize = matchInfos.size();
@@ -79,7 +82,11 @@ public class EndApplicationStart implements CommandLineRunner {
             if (match(matchInfo, matchInfoNext, time)) {
                 //初始化对局;修改用户在线信息  移除匹配池
                 log.info("匹配成功");
-                matchSuccess(matchInfo, matchInfoNext);
+                try{
+                    matchSuccess(matchInfo, matchInfoNext, matchType);
+                }catch(Exception e){
+                    log.info("{},{},{}",e.getCause(),e.getMessage(),e.getStackTrace());
+                }
                 if (i + 1 < matchSize) {
                     matchInfo = matchInfoPools[i + 1];
                     i++;
@@ -93,19 +100,17 @@ public class EndApplicationStart implements CommandLineRunner {
     }
 
     //配对成功
-    private void matchSuccess(MatchInfo matchInfo, MatchInfo matchInfoNext) {
+    private void matchSuccess(MatchInfo matchInfo, MatchInfo matchInfoNext, int matchType) {
         //初始化对局;修改用户在线信息  移除匹配池
         redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfo);
         redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfoNext);
-        redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + matchInfo.getUserName());
-        redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + matchInfoNext.getUserName());
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessageCode(GameMessage.ConnecGame.getMessageCode());
         cheseIndex.setUserName(matchInfo.getUserName());
         cheseIndex.setOppUserName(matchInfoNext.getUserName());
         //向redis放入对局失效时间
-        MatchGameInfo matchGameInfo = new MatchGameInfo(matchInfoNext.getUserName(), 0, null);
-        MatchGameInfo matchGameInfoNext = new MatchGameInfo(matchInfo.getUserName(), 0, null);
+        MatchGameInfo matchGameInfo = new MatchGameInfo(matchInfoNext.getUserName(), matchType, null);
+        MatchGameInfo matchGameInfoNext = new MatchGameInfo(matchInfo.getUserName(), matchType, null);
         redisTemplate.opsForValue().set(matchConfirm + matchInfo.getUserName(), matchGameInfo, expirTime, TimeUnit.SECONDS);
         redisTemplate.opsForValue().set(matchConfirm + matchInfoNext.getUserName(), matchGameInfoNext, expirTime, TimeUnit.SECONDS);
         amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
@@ -155,6 +160,54 @@ public class EndApplicationStart implements CommandLineRunner {
         } else {
             return 4 * sorce;
         }
+    }
+
+    //检查超时下棋
+    private void checkOverTime(){
+        //获取轮到谁下棋的集合
+        Set members = redisTemplate.boundSetOps(Constant.REMAN_TIME).members();
+        Iterator iterator = members.iterator();
+        Instant now = Instant.now();
+        while (iterator.hasNext()){
+            RemanTimeVO remanTimeVO = (RemanTimeVO) iterator.next();
+            boolean after = remanTimeVO.getOverTime().isAfter(now);
+            if(after){
+                //下棋超时自动走位并发送消息
+                goAutomatic(remanTimeVO);
+            }
+        }
+    }
+
+    //自动走位
+    private void goAutomatic(RemanTimeVO remanTimeVO) {
+        //删除
+        redisTemplate.boundSetOps(Constant.REMAN_TIME).remove(remanTimeVO);
+        redisTemplate.delete(Constant.SINGLE_OVER_TIME + remanTimeVO.getUserName());
+        //获取棋盘信息
+        CheckerBoardInfo checkerBoardInfo = (CheckerBoardInfo) redisTemplate.opsForValue().get(Constant.CHECKBOARD_INFO + remanTimeVO.getUserName());
+        String checkerBoardID = checkerBoardInfo.getCheckerBoardID();
+        int[][] cheses = (int[][]) redisTemplate.opsForValue().get(Constant.CHECKERBOARD_REDIS_ID + checkerBoardID);
+        CodeIndex codeIndex = Rule.goAutomic(cheses, checkerBoardInfo.getCode());
+        //发送mq消息
+        CheseIndex cheseIndex = new CheseIndex();
+        cheseIndex.setMessageCode(GameMessage.AUTOCHESEMOVE.getMessageCode());
+        cheseIndex.setMessage(GameMessage.AUTOCHESEMOVE.getMessage());
+        cheseIndex.setCodeIndex(codeIndex);
+        cheseIndex.setTurnMe(checkerBoardInfo.getOppUserName());
+        cheseIndex.setUserName(remanTimeVO.getUserName());
+        cheseIndex.setOppUserName(checkerBoardInfo.getOppUserName());
+        cheseIndex.setRamainTime(60);
+        amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
+        redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + checkerBoardInfo.getOppUserName(),
+                Instant.now().plusSeconds(60));
+        RemanTimeVO timeVO = new RemanTimeVO();
+        timeVO.setOverTime(Instant.now().plusSeconds(60));
+        timeVO.setUserName(checkerBoardInfo.getOppUserName());
+        redisTemplate.boundSetOps(Constant.REMAN_TIME).add(timeVO);
+        redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + checkerBoardInfo.getOppUserName()
+        , Instant.now().plusSeconds(60));
+
+
     }
 
 }

@@ -1,4 +1,4 @@
-package com.chess.vo;
+package com.chess.common.vo;
 
 import lombok.Data;
 

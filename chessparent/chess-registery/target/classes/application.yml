@@ -1,0 +1,14 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: chese-registery
+eureka:
+#  server:
+#    enable-self-preservation: false
+#    wait-time-in-ms-when-sync-empty: 0
+  client: 
+    service-url: 
+      defaultZone: http://localhost:7001/eureka/
+    register-with-eureka: false  #不向自己注册
+    fetch-registry: false #不拉取服务

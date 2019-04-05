@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @Auther: huang yuan li
  * @Description:
@@ -13,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MatchGameInfo {
+public class MatchGameInfo implements Serializable {
     private String otherUserName;
     private int matchType;
     private String userNameState;

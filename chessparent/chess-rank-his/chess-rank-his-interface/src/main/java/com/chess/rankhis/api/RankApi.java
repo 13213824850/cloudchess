@@ -1,5 +1,7 @@
 package com.chess.rankhis.api;
 
+import org.springframework.web.bind.annotation.GetMapping;
+
 /**
  * @Auther: huang yuan li
  * @Description:
@@ -7,4 +9,6 @@ package com.chess.rankhis.api;
  * @Modifide by:
  */
 public interface RankApi {
+    @GetMapping("getRankGrade")
+    public Double getRankGrade(String userName);
 }

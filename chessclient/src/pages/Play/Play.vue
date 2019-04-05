@@ -78,8 +78,9 @@
         let x = ids[0]
         let y = ids[1]
         console.log('上次点击' + this.touchCode + this.codeIndex + '本次点击的棋子' + x + y)
+        let code = this.cheses[x][y]
         //棋子不存在
-        if (this.cheses[x][y] === 0) {
+        if (code === 0) {
           //且手中没拿起棋子，本次移动失败
           if (!this.touchCode) {
             return
@@ -109,15 +110,30 @@
           }
         }
         //棋子存在
-        if (this.cheses[x][y] !== 0) {
+        if (code !== 0) {
           //若手中已经拿起棋子则判断该位置棋子是否是己方
           if (this.touchCode) {
             if (this.codeIndex[0] === x && this.codeIndex[1] === y) {
-              //取消选中棋子颜色恢复
+              //若两次点击棋子相同取消选中棋子颜色恢复
               console.log('取消选中')
               document.getElementById(imgId).style.cssText = 'opacity:1;width:65px'
               this.touchCode = false
+              return
             }
+            //如果拿起的棋子是自己的将棋子颜色便但
+            if((code > 0 && this.isCodeZ) || (code < 0 && !this.isCodeZ)){
+              //拿起棋子
+              this.touchCode = true
+              this.codeIndex = [x, y]
+              //变淡棋子颜色方便标识
+              document.getElementById(imgId).style.cssText = 'opacity:0.5;width:65px'
+              let preImgId = this.codeIndex[0]+ ':' + this.codeIndex[1]
+              document.getElementById(preImgId).style.cssText = 'opacity:1;width:65px' //取消选中
+              return
+            }
+            //若是对方棋子则发送消息
+            let cheseIndex = this.packageCheseIndex(102,this.codeIndex,x,y)
+            this.sendMessage(cheseIndex)
             return
           } else {
             //拿起棋子
@@ -126,6 +142,21 @@
             //变淡棋子颜色方便标识
             document.getElementById(imgId).style.cssText = 'opacity:0.5;width:65px'
             return
+          }
+        }
+      },
+      //封装消息
+      packageCheseIndex(messageCode,codeIndex,x,y){
+        let preX = codeIndex[0]
+        let preY = codeIndex[1]
+        return {
+          'messageCode': messageCode,
+          'codeIndex':{
+            'code': this.cheses[preX][preY],
+            'startX': preX,
+            'startY': preY,
+            'endX': x,
+            'endY': y,
           }
         }
       },
@@ -148,9 +179,28 @@
 
 
     },
-    watch:  {
 
-    }
+    watch:  {
+      //监听接受的数据根改棋盘
+        cheseIndex : function(cheseIndex){
+          this.cheseIndex = cheseIndex
+          let codeIndex = cheseIndex.codeIndex
+          this.$set(this.cheses[codeIndex.startX], codeIndex.startY, 0)
+          this.cheses[codeIndex.startX][codeIndex.startY] = 0
+          this.cheses[codeIndex.endX][codeIndex.endY] = codeIndex.code
+          if(cheseIndex.gameState === 400){
+            return
+          }
+          //查看游戏是否结束
+          if(cheseIndex.gameState === 401 && this.isCodeZ){
+            console.log("我方胜利")
+          }else if(cheseIndex.gameState === 402 && !this.isCodeZ){
+            console.log("我方胜利")
+          }else{
+            console.log("失败")
+          }
+        }
+    },
   }
 </script>
 

@@ -1,0 +1,26 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: chess-paly
+  rabbitmq:
+    host: 120.78.94.125
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+#    listener:
+#      simple:
+#        retry:
+#          enabled: true #是否开启消费者重试
+#          max-attempts: 3   #最大重试次数
+#          initial-interval: 3000 #重试间隔时间（单位毫秒）
+#      direct:
+#        default-requeue-rejected: false #重试次数超过上面的设置之后是否丢弃
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+logging:
+  level:
+    root: info

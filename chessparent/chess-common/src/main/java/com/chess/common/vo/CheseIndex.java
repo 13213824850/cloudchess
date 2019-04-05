@@ -22,6 +22,8 @@ public class CheseIndex implements Serializable {
 	private CodeIndex codeIndex;
 	//轮到哪方
 	private String turnMe;
+	//剩余時間單位秒
+	private int ramainTime;
 	//红方棋子
 	private String redUserName;
 	private String userName;

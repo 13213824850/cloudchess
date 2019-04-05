@@ -39,17 +39,26 @@ public class ChessMessage {
         String userName = cheseIndex.getUserName();
         String userNameOpp = cheseIndex.getOppUserName();
         int code = cheseIndex.getMessageCode();
-        if (code == GameMessage.InitGame.getMessageCode() || code == GameMessage.ConnecGame.getMessageCode()) {
-            //初始化
-            log.info("初始化");
-            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
-            sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
-            return;
-        }
-        if (code == GameMessage.ChesesMove.getMessageCode()) {
-            log.info("移动棋子");
-            sendMessage(WsHandler.sessionMap.get(cheseIndex.getTurnMe()), cheseIndex);
-            return;
+        try{
+            if (code == GameMessage.InitGame.getMessageCode() || code == GameMessage.ConnecGame.getMessageCode()) {
+                //初始化
+                log.info("初始化");
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+            if (code == GameMessage.ChesesMove.getMessageCode()) {
+                log.info("移动棋子");
+                sendMessage(WsHandler.sessionMap.get(cheseIndex.getTurnMe()), cheseIndex);
+                return;
+            }
+            if (code == GameMessage.AUTOCHESEMOVE.getMessageCode()){
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+        }catch (Exception e){
+            log.info("消费失败{}",cheseIndex);
         }
         return;
     }

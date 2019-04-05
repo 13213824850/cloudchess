@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.UUID;
 
 /**
@@ -52,12 +53,14 @@ public class MyRunable implements Runnable {
         info.setName(CheseCode.Red.getCheseName());
         info.setType(matchType);
         info.setOppUserName(userNameBack);
+        info.setDate(new Date());
         CheckerBoardInfo info1 = new CheckerBoardInfo();
         info1.setCheckerBoardID(checkerboardid);
         info1.setGameState(GameMessage.PlayIng.getMessageCode());
         info1.setCode(CheseCode.Back.getCode());
         info1.setName(CheseCode.Back.getCheseName());
         info1.setType(matchType);
+        info1.setDate(new Date());
         // info1.setOppNickName(oppNickName);
         info1.setOppUserName(userNameRed);
         //将信息存入缓存中

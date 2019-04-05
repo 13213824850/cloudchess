@@ -9,11 +9,7 @@ import com.chess.common.vo.CheckerBoardInfo;
 import com.chess.common.vo.CheseIndex;
 import com.chess.common.vo.MatchInfo;
 import com.chess.service.PlayService;
-import com.chess.user.pojo.Friend;
-import com.chess.vo.MatchMessage;
-import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
@@ -27,10 +23,10 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
+import static com.chess.common.enumcodes.GameMessage.RankGame;
 
 @Component
 @Slf4j
@@ -99,15 +95,32 @@ public class WsHandler extends TextWebSocketHandler {
         }else if(messageCode == GameMessage.ChesesMove.getMessageCode()){
             //移动棋子
             playService.cheseMove(session,cheseIndex);
+        } else if (messageCode == GameMessage.RankGame.getMessageCode()) {
+            //rank对局
+            rankGame(userName, session);
         }
 
     }
 
+    //排位
+    private void rankGame(String userName,WebSocketSession session){
+        //获取rank分值
+        double rankGrade = playService.getRankScore(userName);
+        matchInfos.put(userName,rankGrade);
+        MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
+        redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).add(matchInfo,rankGrade);
+        //设置用户状态
+        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,1);
+        CheseIndex cheseIndex = new CheseIndex();
+        cheseIndex.setMessage(GameMessage.MatchIng.getMessage());
+        cheseIndex.setMessageCode(GameMessage.MatchIng.getMessageCode());
+        sendMessage(session,cheseIndex);
+    }
     //匹配
     private void matchGame(String userName,WebSocketSession session){
         //匹配对局
         //获取rank分值
-        double rankGrade=0;
+        double rankGrade = playService.getRankScore(userName);
         matchInfos.put(userName,rankGrade);
         MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
         redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).add(matchInfo,rankGrade);

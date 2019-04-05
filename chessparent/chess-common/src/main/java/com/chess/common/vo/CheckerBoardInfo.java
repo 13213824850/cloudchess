@@ -3,6 +3,7 @@ package com.chess.common.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @Data
 public class CheckerBoardInfo implements Serializable{
@@ -21,4 +22,6 @@ public class CheckerBoardInfo implements Serializable{
 	private int gameState;
 	//对局类型
 	private int type;
+	//開始時間
+	private Date date;
 }

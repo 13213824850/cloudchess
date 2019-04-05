@@ -30,8 +30,11 @@ public class Msg {
 		msg.setMessage("success");
 		return msg;
 	}
-	
-	public Msg add(String key,Object value) {
+
+    public static Msg agreePlay(String userName) {
+    }
+
+    public Msg add(String key,Object value) {
 	    data.put(key, value);
 		return this;
 	}

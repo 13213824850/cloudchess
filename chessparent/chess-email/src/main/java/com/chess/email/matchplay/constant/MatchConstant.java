@@ -11,5 +11,5 @@ public class MatchConstant {
         @return String
      */
     public static String AGREE_MATCH =  "0";//同意匹配
-    public static String REFUSE_MATCH =  "0";//拒绝匹配
+    public static String REFUSE_MATCH =  "1";//拒绝匹配
 }

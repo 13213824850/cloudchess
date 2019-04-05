@@ -17,6 +17,12 @@ public class Constant {
 	public static final String GameList = "GameList:";
 	//匹配对局放入redis的key
 	public static final  String MATCH_GAME_KEY  = "matchgamekey";
+	//排位对局放入redis的key
+	public static final  String RANK_GAME_KEY  = "rankgamekey";
 	//将在线用户放入reids的key 0在线 1匹配中 2游戏中
 	public static final String KEEP_ALIVE = "keepalive:";
+	//所有用戶下棋超時管理用于set集合key
+	public static final String REMAN_TIME = "remantime:";
+	//用户超时管理
+	public static final String SINGLE_OVER_TIME = "singleovertime:";
 }

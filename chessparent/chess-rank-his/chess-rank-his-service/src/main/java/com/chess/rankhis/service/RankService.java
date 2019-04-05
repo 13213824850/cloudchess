@@ -1,5 +1,7 @@
 package com.chess.rankhis.service;
 
+import com.chess.rankhis.enty.Rank;
+
 /**
  * @Auther: huang yuan li
  * @Description:
@@ -8,4 +10,6 @@ package com.chess.rankhis.service;
  */
 public interface RankService {
     Double getRankGrade(String userName);
+    void updateRank(String userName,Boolean result);
+    Rank getRank(String userName );
 }

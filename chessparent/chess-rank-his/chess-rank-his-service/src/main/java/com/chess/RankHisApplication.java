@@ -1,10 +1,10 @@
 package com.chess;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+import tk.mybatis.spring.annotation.MapperScan;
 
 /**
  * @Auther: huang yuan li
@@ -14,6 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableSwagger2
 @MapperScan(value = "com.chess.rankhis.mapper")
 public class RankHisApplication {
     public static void main(String[] args) {

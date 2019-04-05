@@ -10,10 +10,12 @@ import lombok.NoArgsConstructor;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Table(name = "rank")
 public class Rank implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +23,13 @@ public class Rank implements Serializable {
 
     private String userName;
 
+    //大段位比如黄金
     private Integer rankGrade;
 
+    //黄金一
     private Integer rankGradeStage;
 
+    //一颗星
     private Integer star;
 
     private Integer protectCount;

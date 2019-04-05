@@ -140,7 +140,10 @@
           //取消匹配对局成功
           clearInterval(this.intervalId)
           this.matchTime = 0
-        } else {
+        } else if(code === 102 ){
+          //棋子移动成功
+          this.updateCheseIndex(cheseIndex)
+        }else{
           //加入匹配对局失败清楚定时器
           clearInterval(this.intervalId)
           console.log("匹配对局失败")

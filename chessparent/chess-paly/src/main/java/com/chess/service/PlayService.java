@@ -1,18 +1,18 @@
 package com.chess.service;
 
 import com.alibaba.fastjson.JSON;
-import com.chess.cheserules.Rule;
-import com.chess.client.FriendClient;
+import com.chess.client.HistoryClient;
+import com.chess.client.RankClient;
+import com.chess.common.cheserules.Rule;
 import com.chess.common.constant.Constant;
 import com.chess.common.enumcodes.GameMessage;
 import com.chess.common.util.CheseCode;
-import com.chess.common.util.Msg;
 import com.chess.common.util.RuleUtil;
 import com.chess.common.vo.CheckerBoardInfo;
 import com.chess.common.vo.CheseIndex;
 import com.chess.common.vo.CodeIndex;
 import com.chess.play.WsHandler;
-import com.netflix.discovery.converters.Auto;
+import com.chess.rankhis.enty.GameRecord;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +23,8 @@ import org.springframework.web.socket.WebSocketSession;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.time.Instant;
+import java.util.Date;
 
 /**
  * @Auther: huang yuan li
@@ -38,6 +40,10 @@ public class PlayService {
     private RedisTemplate<String,Object> redisTemplate;
     @Autowired
     private AmqpTemplate amqpTemplate;
+    @Autowired
+    private HistoryClient historyClient;
+    @Autowired
+    private RankClient rankClient;
 
     /**
      * @Auther:huang yuan li
@@ -60,6 +66,12 @@ public class PlayService {
         cheseIndex.setGameState(checkerBoardInfo.getGameState());
         cheseIndex.setRedUserName(checkerBoardInfo.getCode() == CheseCode.Red.getCode() ?
                 userName : checkerBoardInfo.getOppUserName());
+        Instant instant = (Instant) redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
+        int time = 0;
+        if(instant != null){
+           time = (int)(Instant.now().getEpochSecond() - instant.getEpochSecond());
+        }
+        cheseIndex.setRamainTime(time);
         sendMessage(session,cheseIndex);
         //设置用户状态
         redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,2);
@@ -68,8 +80,14 @@ public class PlayService {
 
 
     public void cheseMove(WebSocketSession session, CheseIndex cheseIndex) throws IOException {
-        // 获取棋盘
+
         String userName = WsHandler.sessionIds.get(session.getId());
+        //检查是否超时
+        Instant time = (Instant)redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
+        if(time == null){
+            return;
+        }
+        // 获取棋盘
         CheckerBoardInfo checkerboardinfo = (CheckerBoardInfo) redisTemplate.opsForValue()
                 .get(Constant.CHECKBOARD_INFO + userName);
         TextMessage sendMsg = null;
@@ -117,6 +135,8 @@ public class PlayService {
     private void gameResullt(CheseIndex cheseIndex, CheckerBoardInfo checkerboardinfo, int gameState,
                              WebSocketSession session) {
         String userName = WsHandler.sessionIds.get(session.getId());
+        // 更改turnMe
+        String turnMe = checkerboardinfo.getOppUserName();
         if (gameState == GameMessage.BackWin.getMessageCode() || gameState == GameMessage.RedWin.getMessageCode()) {
             log.debug("游戏结束gameState{}", gameState);
             // 清楚数据
@@ -124,31 +144,28 @@ public class PlayService {
             checkerboardinfo.setGameState(gameState);
             redisTemplate.delete(Constant.CHECKBOARD_INFO + userName);
             redisTemplate.delete(Constant.CHECKBOARD_INFO + checkerboardinfo.getOppUserName());
-            //redisTemplate.opsForValue().set(Constant.CHECKBOARD_INFO + userName, checkerboardinfo, 30,
-            //		TimeUnit.MINUTES);
-            //CheckerBoardInfo infop = checkerboardinfo;
-            //infop.setOppUserName(userName);
-            //redisTemplate.opsForValue().set(Constant.CHECKBOARD_INFO + checkerboardinfo.getOppUserName(), infop, 30,
-            //		TimeUnit.MINUTES);
             // 棋盘信息
             redisTemplate.delete("turnMe:" + checkerboardinfo.getCheckerBoardID());
             redisTemplate.delete(Constant.CHECKERBOARD_REDIS_ID + checkerboardinfo.getCheckerBoardID());
-            //redisTemplate.expire("turnMe:" + infop.getCheckerBoardID(), 30, TimeUnit.MINUTES);
-            //redisTemplate.expire(Constant.CHECKERBOARD_REDIS_ID + infop.getCheckerBoardID(), 30, TimeUnit.MINUTES);
-            // 将记录保存到数据库中
-           /* GameRecord gameRecord = new GameRecord();
-            gameRecord.setWinUserName(userName);
-            String baduserName = checkerboardinfo.getOppUserName();
+            //添加记录
+            GameRecord gameRecord = new GameRecord();
+            gameRecord.setCreated(new Date());
             gameRecord.setType(checkerboardinfo.getType());
-            gameRecord.setStansportUserName(baduserName);
-            gameRecordService.addGameRecord(gameRecord);*/
+            gameRecord.setUpdated(new Date());
+            gameRecord.setUserName(userName);
+            gameRecord.setOtherUserName(checkerboardinfo.getOppUserName());
+            gameRecord.setResult(true);
+            historyClient.addGameRecord(gameRecord);
         } else {
             cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
-            // 更改turnMe
-            String turnMe = checkerboardinfo.getOppUserName();
-            cheseIndex.setTurnMe(turnMe);
             redisTemplate.opsForValue().set("turnMe:" + checkerboardinfo.getCheckerBoardID(), turnMe);
         }
+
+        cheseIndex.setTurnMe(turnMe);
+        //s删除超时信息
+        redisTemplate.delete(Constant.SINGLE_OVER_TIME + userName);
+        redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + turnMe, Instant.now().plusSeconds(60));
+        cheseIndex.setRamainTime(60);
         // 向对方发送己方所走棋位
         // 向对方发送数据
         log.debug("对方userName{}", checkerboardinfo.getOppUserName());
@@ -165,7 +182,7 @@ public class PlayService {
         }
         int code = codeIndex.getCode();
         if (!((checkerboardinfo.getCode() == CheseCode.Red.getCode() && code > 0)
-                || checkerboardinfo.getCode() == CheseCode.Back.getCode() && code < 0)) {
+                || (checkerboardinfo.getCode() == CheseCode.Back.getCode() && code < 0))) {
             log.info("不符合");
             return "不符合走棋规则";
         }
@@ -225,5 +242,10 @@ public class PlayService {
                 log.error("发送失败");
             }
         }
+    }
+
+    //获取rank分值
+    public double getRankScore(String userName){
+        rankClient.getRankGrade(userName);
     }
 }
