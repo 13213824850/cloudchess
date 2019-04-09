@@ -1,6 +1,7 @@
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/enumcodes/UserCode.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/constant/Constant.java
+/home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/GeneralIndex.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/util/Msg.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/exception/ChessException.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java
@@ -10,6 +11,8 @@
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/MatchInfo.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/util/RuleUtil.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/ActionCode.java
+/home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/RemanTimeVO.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/vo/CodeIndex.java
 /home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/util/CookieUtils.java
+/home/huang/workspace/idea/chessparent/chess-common/src/main/java/com/chess/common/cheserules/Rule.java

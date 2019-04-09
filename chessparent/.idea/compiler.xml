@@ -10,35 +10,17 @@
         <module name="chess-email" />
         <module name="chess-gateway" />
         <module name="chess-registery" />
+        <module name="chess-user-service" />
         <module name="chess-common" />
         <module name="chess-auth-common" />
         <module name="chess-rank-his-service" />
-        <module name="chess-rank-his-interface" />
         <module name="chess-user-interface" />
         <module name="chess-auth-service" />
-        <module name="chess-user-service" />
+        <module name="chess-rank-his-interface" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="chess-auth" target="1.8" />
-      <module name="chess-auth-common" target="1.8" />
-      <module name="chess-auth-interface" target="1.8" />
-      <module name="chess-auth-service" target="1.8" />
-      <module name="chess-common" target="1.8" />
-      <module name="chess-email" target="1.8" />
-      <module name="chess-gateway" target="1.8" />
-      <module name="chess-match" target="1.8" />
-      <module name="chess-paly" target="1.8" />
-      <module name="chess-rank-his" target="1.8" />
-      <module name="chess-rank-his-interface" target="1.8" />
-      <module name="chess-rank-his-service" target="1.8" />
-      <module name="chess-registery" target="1.8" />
-      <module name="chess-user" target="1.8" />
-      <module name="chess-user-interface" target="1.8" />
-      <module name="chess-user-service" target="1.8" />
-      <module name="chessparent" target="1.8" />
-      <module name="test" target="1.8" />
-      <module name="test-exception" target="1.8" />
+      <module name="chess-zipkin" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -54,6 +36,7 @@
       <module name="chess-registery" options="-parameters" />
       <module name="chess-user-interface" options="-parameters" />
       <module name="chess-user-service" options="-parameters" />
+      <module name="chess-zipkin" options="-parameters" />
     </option>
   </component>
 </project>

@@ -4,13 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RemanTimeVO {
+public class RemanTimeVO implements Serializable {
     private String userName;
     //创建的过期时间
     private Instant overTime;

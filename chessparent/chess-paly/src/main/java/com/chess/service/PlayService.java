@@ -61,7 +61,7 @@ public class PlayService {
         cheseIndex.setMessageCode(GameMessage.InitGame.getMessageCode());
         String turnMe = (String) redisTemplate.opsForValue()
                 .get("turnMe:" + checkerBoardInfo.getCheckerBoardID());
-        cheseIndex.add("checkerBoardInfo", checkerBoardInfo).add("cheses", cheses);
+        cheseIndex.add("checkerBoardInfo", checkerBoardInfo).add("cheses", cheses).add("startTime",checkerBoardInfo.getDate());
         cheseIndex.setTurnMe(turnMe);
         cheseIndex.setGameState(checkerBoardInfo.getGameState());
         cheseIndex.setRedUserName(checkerBoardInfo.getCode() == CheseCode.Red.getCode() ?
@@ -246,6 +246,6 @@ public class PlayService {
 
     //获取rank分值
     public double getRankScore(String userName){
-        rankClient.getRankGrade(userName);
+       return rankClient.getRankGrade(userName);
     }
 }

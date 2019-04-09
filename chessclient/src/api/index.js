@@ -14,3 +14,6 @@ export const reqPlayWs = 'ws://localhost:10010/play/start/'
 export const reqConfirmMatch = () => ajax('/matchGame/confirmMatch')
 //取消对局
 export const reqRefuseGame = () => ajax('/matchGame/refuseGame')
+//查看rank信息
+export const reqGetRank = (userName) =>  ajax('/rankhis/getRank/'+userName)
+

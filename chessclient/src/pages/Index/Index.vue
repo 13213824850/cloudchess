@@ -1,5 +1,6 @@
 <template>
-  <div class="row">
+
+  <div class="row" v-if="this.socket">
 
     <div class="col-sm-5 col-sm-offset-1">
       <div class="row">
@@ -44,6 +45,11 @@
       </div>
     </div>
   </div>
+  <div class="row" v-else>
+    <h2><a style="margin-top: 200px; align-content: center" :onclick="againConnect">与服务器断开连接，请重试</a>
+      </h2>
+
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -74,6 +80,7 @@
     },
 
     methods: {
+
       ...mapActions(['updateCheseIndex','recordMySocket']),
       //开始匹配
       test(){
@@ -110,11 +117,20 @@
         }
       },
       open: function () {
+
         this.recordMySocket(this.socket)
         console.log("socket连接成功"+this.socket)
       },
       error: function () {
+        this.recordMySocket(null)
+        this.socket = null
         console.log("连接错误")
+      },
+      againConnect(){
+        this.socket = new WebSocket(this.path)
+      },
+      goPlay: function(){
+        this.$router.replace("/play")
       },
       getMessage: function (msg) {
         console.log("接受消息",msg.data)
@@ -127,7 +143,7 @@
           this.updateCheseIndex(cheseIndex)
           clearInterval(this.intervalId)
           //去对局页面
-          this.$router.replace("/play")
+          this.goPlay()
         } else if (code === 203) {
           //正在匹配中
         } else if (code === 204) {
@@ -141,6 +157,9 @@
           clearInterval(this.intervalId)
           this.matchTime = 0
         } else if(code === 102 ){
+          //托管棋子移动成功
+          this.updateCheseIndex(cheseIndex)
+        } else if (code === 108){
           //棋子移动成功
           this.updateCheseIndex(cheseIndex)
         }else{

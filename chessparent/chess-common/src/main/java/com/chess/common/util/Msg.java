@@ -31,9 +31,6 @@ public class Msg {
 		return msg;
 	}
 
-    public static Msg agreePlay(String userName) {
-    }
-
     public Msg add(String key,Object value) {
 	    data.put(key, value);
 		return this;

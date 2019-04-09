@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>chess-auth-common</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
     <dependencies>
         <dependency>
             <groupId>com.chess</groupId>
@@ -36,5 +37,7 @@
             <version>RELEASE</version>
         </dependency>
     </dependencies>
+
+
 
 </project>

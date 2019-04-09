@@ -30,10 +30,16 @@ spring:
         - Path=/play/**
         filters:
         - RewritePath=/play/(?<segment>.*), /$\{segment}
+      - id: neo_route
+        uri: lb://CHESS-RANKHIS-SERVICE
+        predicates:
+          - Path=/rankhis/**
+        filters:
+          - RewritePath=/rankhis/(?<segment>.*), /$\{segment}
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://120.78.94.125:7001/eureka/
     registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: true

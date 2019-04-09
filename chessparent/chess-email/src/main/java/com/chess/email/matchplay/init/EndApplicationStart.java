@@ -52,7 +52,7 @@ public class EndApplicationStart implements CommandLineRunner {
                 log.info("开始匹配");
                 matchProcess(GameMessage.MatchGame.getMessageCode());
                 log.info("开始rank");
-                //matchRank();
+                matchProcess(GameMessage.RankGame.getMessageCode());
                 log.info("本轮结匹配结束");
                 //显示列表
                 //showGameList();
@@ -64,7 +64,14 @@ public class EndApplicationStart implements CommandLineRunner {
 
     protected void matchProcess(int matchType) {
         //查询匹配池
-        Set<Object> matchInfos = redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).range(0, -1);
+        String key = "";
+        if(matchType ==GameMessage.MatchGame.getMessageCode()){
+            key = Constant.MATCH_GAME_KEY;
+        }
+        if(matchType ==GameMessage.RankGame.getMessageCode()){
+            key = Constant.RANK_GAME_KEY;
+        }
+        Set<Object> matchInfos = redisTemplate.boundZSetOps(key).range(0, -1);
         int matchSize = matchInfos.size();
         MatchInfo[] matchInfoPools = new MatchInfo[matchSize > 0 ? matchSize : 1];
 
@@ -171,7 +178,7 @@ public class EndApplicationStart implements CommandLineRunner {
         while (iterator.hasNext()){
             RemanTimeVO remanTimeVO = (RemanTimeVO) iterator.next();
             boolean after = remanTimeVO.getOverTime().isAfter(now);
-            if(after){
+            if(!after){
                 //下棋超时自动走位并发送消息
                 goAutomatic(remanTimeVO);
             }
@@ -188,6 +195,9 @@ public class EndApplicationStart implements CommandLineRunner {
         String checkerBoardID = checkerBoardInfo.getCheckerBoardID();
         int[][] cheses = (int[][]) redisTemplate.opsForValue().get(Constant.CHECKERBOARD_REDIS_ID + checkerBoardID);
         CodeIndex codeIndex = Rule.goAutomic(cheses, checkerBoardInfo.getCode());
+        cheses[codeIndex.getEndX()][codeIndex.getEndY()] = codeIndex.getCode();
+        cheses[codeIndex.getStartX()][codeIndex.getStartY()] = 0;
+        redisTemplate.opsForValue().set(Constant.CHECKERBOARD_REDIS_ID + checkerBoardID, cheses);
         //发送mq消息
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessageCode(GameMessage.AUTOCHESEMOVE.getMessageCode());

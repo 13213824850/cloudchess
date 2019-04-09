@@ -51,6 +51,8 @@ public class RankServiceimpl implements RankService {
         rank.setUpdated(new Date());
         rank.setContinusTransport(0);
         rank.setContinusWin(0);
+        rank.setWinCount(0);
+        rank.setTransportCount(0);
         rank.setProtectCount(0);
         rank.setRankGradeStage(3);
         rank.setRankGrade(1);

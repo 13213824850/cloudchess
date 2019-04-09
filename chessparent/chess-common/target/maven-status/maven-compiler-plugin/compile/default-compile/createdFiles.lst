@@ -1,8 +1,12 @@
+com/chess/common/vo/GeneralIndex.class
+com/chess/common/vo/RemanTimeVO.class
+com/chess/common/cheserules/Rule.class
 com/chess/common/constant/Constant.class
 com/chess/common/util/CookieUtils$CookieBuilder.class
 com/chess/common/util/CheseCode.class
 com/chess/common/advice/BasicExceptionHandle.class
 com/chess/common/enumcodes/ExceptionEnum.class
+com/chess/common/cheserules/Rule$1.class
 com/chess/common/util/Msg.class
 com/chess/common/util/RuleUtil.class
 com/chess/common/vo/CheseIndex.class

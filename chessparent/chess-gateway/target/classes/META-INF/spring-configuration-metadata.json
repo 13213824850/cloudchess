@@ -1,0 +1,37 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.chess.properties.FilterProperties",
+      "name": "chess.filter",
+      "type": "com.chess.properties.FilterProperties"
+    },
+    {
+      "sourceType": "com.chess.properties.JwtProperties",
+      "name": "chess.jwt",
+      "type": "com.chess.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.chess.properties.FilterProperties",
+      "name": "chess.filter.allow-paths",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.chess.properties.JwtProperties",
+      "name": "chess.jwt.cookie-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.chess.properties.JwtProperties",
+      "name": "chess.jwt.pub-key-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.chess.properties.JwtProperties",
+      "name": "chess.jwt.public-key",
+      "type": "java.security.PublicKey"
+    }
+  ]
+}

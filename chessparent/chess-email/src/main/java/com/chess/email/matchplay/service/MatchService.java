@@ -65,5 +65,6 @@ public class MatchService {
     }
 
     public Msg lauchPlay(String userName, String oppUserName) {
+        return null;
     }
 }

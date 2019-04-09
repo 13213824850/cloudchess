@@ -17,7 +17,6 @@ public class WsConfigure implements WebSocketConfigurer {
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         log.info("请求连接");
         registry.addHandler(myHandler(), "/index/").setAllowedOrigins("*");
-        registry.addHandler(myHandler(), "/start/").setAllowedOrigins("*");
     }
 
     @Bean
@@ -25,8 +24,5 @@ public class WsConfigure implements WebSocketConfigurer {
         return new WsHandler();
     }
 
-    @Bean
-    public GameStartWs gameStartWs(){
-        return new GameStartWs();
-    }
+
 }

@@ -4,6 +4,7 @@ import Login from '../pages/Login/Login.vue'
 import Register from  '../pages/Login/Register'
 import Index from '../pages/Index/Index'
 import Play from '../pages/Play/Play'
+import Test from '../pages/Test'
 Vue.use(Router)
 
 export default new Router({
@@ -44,6 +45,10 @@ export default new Router({
         showFooter: false,
         showHead: false
       }
+    },
+    {
+      path: '/test',
+      component: Test
     }
   ]
 })

@@ -35,7 +35,7 @@ public class MatchController {
     }
     @GetMapping(value = "agreePlay")
     public Msg agreePlay(@RequestHeader("username")String userName){
-        return Msg.agreePlay(userName);
+        return null;
     }
 
 }

@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,8 +30,8 @@ public class RankController {
         return rankService.getRankGrade(userName);
     }
     @ApiOperation(value = "查詢rank信息")
-    @GetMapping("getRank")
-    public Msg getRank(@RequestHeader("userName") String userName){
+    @GetMapping("getRank/{userName}")
+    public Msg getRank(@PathVariable("userName") String userName){
         return Msg.success().add("rank", rankService.getRank(userName));
     }
 }

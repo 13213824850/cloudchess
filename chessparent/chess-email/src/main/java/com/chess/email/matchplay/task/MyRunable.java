@@ -6,6 +6,7 @@ import com.chess.common.util.CheseCode;
 import com.chess.common.util.RuleUtil;
 import com.chess.common.vo.CheckerBoardInfo;
 import com.chess.common.vo.CheseIndex;
+import com.chess.common.vo.RemanTimeVO;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.time.Instant;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -65,6 +68,16 @@ public class MyRunable implements Runnable {
         info1.setOppUserName(userNameRed);
         //将信息存入缓存中
         redisTemplate.opsForValue().set("turnMe:" + checkerboardid, userNameRed);
+       try{
+           redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + userNameRed, Instant.now().plusSeconds(60));
+           RemanTimeVO remanTimeVO = new RemanTimeVO();
+           remanTimeVO.setUserName(userNameRed);
+           remanTimeVO.setOverTime(Instant.now().plusSeconds(64));
+           remanTimeVO.setTime(64);
+           redisTemplate.boundSetOps(Constant.REMAN_TIME).add(remanTimeVO);
+       }catch (Exception e){
+           System.out.println("异常"+e);
+       }
         redisTemplate.opsForValue().set(Constant.CHECKBOARD_INFO + userNameRed, info);
         redisTemplate.opsForValue().set(Constant.CHECKBOARD_INFO + userNameBack, info1);
         // 棋盘初始化成功向mq发消息
@@ -72,8 +85,14 @@ public class MyRunable implements Runnable {
         cheseIndex.setMessageCode(GameMessage.InitGame.getMessageCode());
         cheseIndex.setMessage(GameMessage.InitGame.getMessage());
         cheseIndex.setUserName(userNameRed);
+        cheseIndex.setRamainTime(60);
         cheseIndex.setOppUserName(userNameBack);
         cheseIndex.setRedUserName(userNameRed);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("cheses",initCheckerboard);
+        map.put("startTime",Instant.now());
+        cheseIndex.setMap(map);
+
         //发送消息
         log.info("初始化成准备发送mq消息");
         amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
