@@ -1,5 +1,6 @@
 package com.chess.common.util;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,7 +16,7 @@ public class Msg {
 	private int code;
 	//信息
 	private String message;
-	private Map<String, Object> data = new ConcurrentHashMap<>();
+	private Map<String, Object> data = new HashMap<>();
 	
 	public static Msg fail() {
 		Msg msg = new Msg();

@@ -10,10 +10,10 @@
         <module name="chess-email" />
         <module name="chess-gateway" />
         <module name="chess-registery" />
-        <module name="chess-user-service" />
         <module name="chess-common" />
         <module name="chess-auth-common" />
         <module name="chess-rank-his-service" />
+        <module name="chess-user-service" />
         <module name="chess-user-interface" />
         <module name="chess-auth-service" />
         <module name="chess-rank-his-interface" />

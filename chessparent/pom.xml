@@ -113,22 +113,22 @@
             <scope>true</scope>
         </dependency> -->
     </dependencies>
-    <!--<build>
+   <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>-->
+    </build>
 
     <modules>
         <module>chess-registery</module>
+        <module>chess-common</module>
+        <module>chess-auth</module>
         <module>chess-gateway</module>
         <module>chess-user</module>
-        <module>chess-common</module>
         <module>chess-email</module>
-        <module>chess-auth</module>
         <module>chess-paly</module>
         <module>chess-rank-his</module>
         <module>chess-rank-his</module>

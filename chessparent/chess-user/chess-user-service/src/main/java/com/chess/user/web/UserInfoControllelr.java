@@ -1,20 +1,13 @@
 package com.chess.user.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.messaging.handler.annotation.Headers;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-
 import com.chess.common.util.Msg;
 import com.chess.common.vo.ActionCode;
 import com.chess.user.pojo.UserInfo;
 import com.chess.user.service.UserInfoService;
-import com.chess.user.vo.UserLogin;
-
 import io.swagger.annotations.ApiOperation;
-
-import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserInfoControllelr {
@@ -54,13 +47,10 @@ public class UserInfoControllelr {
 	public Msg getUserpro(@RequestHeader("username")String userName){
 		return userInfoService.getUserpro(userName);
 	}
-/*	@GetMapping("/getUserInfo/{userName}")
-	public Msg getUserById(@PathVariable("userName") String userName) {
-		return userInfoService.getUserByUserName(userName);
+	@GetMapping("/getUserInfoByNickNAme/{nickName}")
+	public Msg getUserByNickName(@PathVariable("nickName") String nickName) {
+		return userInfoService.getUserByNickName(nickName);
 	}
-	@GetMapping("/getUser/{cookie}")
-	public Msg getUser(@PathVariable("cookie") String cookie) {
-		return userInfoService.getUser(cookie);
-	}*/
+
 	
 }

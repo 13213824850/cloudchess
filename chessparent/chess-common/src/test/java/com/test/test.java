@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -21,12 +23,13 @@ import java.util.stream.IntStream;
 public class test {
     @Test
     public void testStream(){
-        List<st> list = new ArrayList<>();
-        list.add(new st("1",1));
-        list.add(new st("2",2));
-        String collect = list.stream().map(s -> s.getId()).collect(Collectors.joining("|"));
-        System.out.println(collect);
-
+        Map<String, Integer> map= new HashMap<>();
+        map.put("1",1);
+        map.put("3",3);
+        for(String key: map.keySet()){
+            System.out.println(key);
+            System.out.println(map.get(key));
+        }
 
     }
 

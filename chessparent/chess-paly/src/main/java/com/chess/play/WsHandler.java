@@ -47,13 +47,15 @@ public class WsHandler extends TextWebSocketHandler {
     private PlayService playService;
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+       playService.updateFriendShow(sessionIds.get(session.getId()), Constant.LINE_OFF);
         // 删除在线信息
         redisTemplate.delete(Constant.KEEP_ALIVE + sessionIds.get(session.getId()));
         sessionMap.remove(sessionIds.get(session.getId()));
         sessionIds.remove(session.getId());
         session.getId();
         subOnlineCount();
-        // 判断匹配对局中
+        //好友管理
+
         log.info("断开连接");
     }
 
@@ -68,8 +70,10 @@ public class WsHandler extends TextWebSocketHandler {
         if (checkerBoardInfo != null) {
             //存在对局
             playService.againConnectMatch(checkerBoardInfo,session,userName);
+            playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_PLAY);
         }else{
             firstConnect(session,userName);
+            playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_ON);
         }
         sessionIds.put(session.getId(),userName);
         sessionMap.put(userName,session);
@@ -87,10 +91,12 @@ public class WsHandler extends TextWebSocketHandler {
         String userName = sessionIds.get(session.getId());
         if(messageCode == GameMessage.MatchGame.getMessageCode()){
             matchGame(userName, session);
+            playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_MATCH);
             return;
         }else if(messageCode == GameMessage.RemoveMatch.getMessageCode()){
             //取消匹配
             removeMatch(userName, session.getId());
+            playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_ON);
             return;
         }else if(messageCode == GameMessage.ChesesMove.getMessageCode()){
             //移动棋子
@@ -98,6 +104,11 @@ public class WsHandler extends TextWebSocketHandler {
         } else if (messageCode == GameMessage.RankGame.getMessageCode()) {
             //rank对局
             rankGame(userName, session);
+            playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_MATCH);
+        }else if(messageCode == GameMessage.SEND_ALL_MESSAGE.getMessageCode()){
+            playService.sendMessageToAll(cheseIndex, userName);
+        }else if(messageCode == GameMessage.SEND_SINGLE_MESSAGE.getMessageCode()){
+            playService.sendMessageToSingle(cheseIndex, userName);
         }
 
     }
@@ -109,8 +120,6 @@ public class WsHandler extends TextWebSocketHandler {
         matchInfos.put(userName,rankGrade);
         MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
         redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).add(matchInfo,rankGrade);
-        //设置用户状态
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,1);
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessage(GameMessage.MatchIng.getMessage());
         cheseIndex.setMessageCode(GameMessage.MatchIng.getMessageCode());
@@ -124,8 +133,6 @@ public class WsHandler extends TextWebSocketHandler {
         matchInfos.put(userName,rankGrade);
         MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
         redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).add(matchInfo,rankGrade);
-        //设置用户状态
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,1);
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessage(GameMessage.MatchIng.getMessage());
         cheseIndex.setMessageCode(GameMessage.MatchIng.getMessageCode());
@@ -135,8 +142,7 @@ public class WsHandler extends TextWebSocketHandler {
     private void removeMatch(String userName, String sessionId){
         //移除匹配队列
         redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfos.get(userName));
-        //设置用户状态
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,0);
+        redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).remove(matchInfos.get(userName));
         matchInfos.remove(userName);
         //移除成功
         CheseIndex cheseIndex = new CheseIndex();
@@ -166,8 +172,6 @@ public class WsHandler extends TextWebSocketHandler {
         WsHandler.onlineCount--;
     }
     private void firstConnect(WebSocketSession session, String userName){
-        //设置用户状态
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,0);
         sessionIds.put(session.getId(), userName);
         sessionMap.put(userName, session);
         // 显示好友
@@ -184,7 +188,6 @@ public class WsHandler extends TextWebSocketHandler {
         cheseIndex.setMessage(GameMessage.ShowFriends.getMessage());
         cheseIndex.setMap(friends);
         sendMessage(session,cheseIndex);
-        log.info("有新连接加入！当前在线人数为" + getOnlineCount());
         log.info("当前接入的用户名称是{} sessionid{}", userName, session.getId());
     }
 

@@ -293,7 +293,7 @@ public class Rule {
                     } else if (i > 0) {
                         codeIndex = new CodeIndex(i, j, i - 1, j, cheses[i][j]);
                     }
-                } else if (cheses[i][j] == CheseCode.Soldier.getCode() && code == CheseCode.Back.getCode()){
+                } else if (Math.abs(cheses[i][j]) == CheseCode.Soldier.getCode() && code == CheseCode.Back.getCode()){
                     //如果是黑色方
                     if (j > 0) {
                         codeIndex = new CodeIndex(i, j, i, j - 1, cheses[i][j]);

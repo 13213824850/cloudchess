@@ -72,7 +72,7 @@ eureka:
 #            timeoutInMillisecond: 5000 # 熔断超时时长：10000ms
 chess:
   jwt:
-    pubKeyPath: /home/huang/workspace/idea/id_rsa.pub # 公钥地址
+    pubKeyPath: E://id_rsa.pub # 公钥地址
     cookieName: CHESS_TOKEN # cookie的名称
   filter:
     allowPaths:

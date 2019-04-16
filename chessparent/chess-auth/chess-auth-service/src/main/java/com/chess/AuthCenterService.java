@@ -20,4 +20,5 @@ public class AuthCenterService {
     public static void main(String[] args) {
         SpringApplication.run(AuthCenterService.class);
     }
+
 }

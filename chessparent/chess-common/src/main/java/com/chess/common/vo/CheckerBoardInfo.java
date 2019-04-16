@@ -3,6 +3,7 @@ package com.chess.common.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Date;
 
 @Data

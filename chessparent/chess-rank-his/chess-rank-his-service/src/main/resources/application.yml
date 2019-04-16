@@ -4,7 +4,7 @@ spring:
   application:
     name: chess-rankhis-service
   datasource:
-      url: jdbc:mysql://localhost:3306/chese
+      url: jdbc:mysql://120.78.94.125:3306/chese
       username: chese
       password: 1234
   redis:

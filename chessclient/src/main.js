@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min'
 Vue.config.productionTip = false
 import store from './store'
-
+import VueContextMenu from '@xunlei/vue-context-menu'
+Vue.use(VueContextMenu)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

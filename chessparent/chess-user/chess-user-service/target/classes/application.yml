@@ -1,0 +1,33 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: chess-user-service
+  datasource:
+    url: jdbc:mysql://120.78.94.125:3306/chese
+    username: chese
+    password: 1234
+  redis:
+    host: 120.78.94.125
+    password: 123456
+  rabbitmq:
+    host: 120.78.94.125
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+eureka:
+  client:
+    service-url:
+      defaultZone: http://120.78.94.125:7001/eureka/
+  instance:
+    prefer-ip-address: true
+    ip-address: localhost
+mybatis:
+  type-aliases-package: com.chess.user.pojo
+logging:
+  level:
+    root: info
+ribbon:
+  eager-load:
+    enabled: true

@@ -22,7 +22,7 @@ public class Friend implements Serializable {
 
     private Byte friendSex;
 
-    private int onLine;//是否在线
+    private Integer onLine;//是否在线
 
     private Date created;
 

@@ -1,10 +1,12 @@
 package com.chess.service;
 
 import com.alibaba.fastjson.JSON;
+import com.chess.client.FriendClient;
 import com.chess.client.HistoryClient;
 import com.chess.client.RankClient;
 import com.chess.common.cheserules.Rule;
 import com.chess.common.constant.Constant;
+import com.chess.common.constant.MQConstant;
 import com.chess.common.enumcodes.GameMessage;
 import com.chess.common.util.CheseCode;
 import com.chess.common.util.RuleUtil;
@@ -13,6 +15,8 @@ import com.chess.common.vo.CheseIndex;
 import com.chess.common.vo.CodeIndex;
 import com.chess.play.WsHandler;
 import com.chess.rankhis.enty.GameRecord;
+import com.chess.user.pojo.Friend;
+import com.netflix.discovery.converters.Auto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +28,11 @@ import org.springframework.web.socket.WebSocketSession;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: huang yuan li
@@ -44,6 +52,8 @@ public class PlayService {
     private HistoryClient historyClient;
     @Autowired
     private RankClient rankClient;
+    @Autowired
+    private FriendClient friendClient;
 
     /**
      * @Auther:huang yuan li
@@ -57,6 +67,7 @@ public class PlayService {
         //获取棋盘信息
         int[][] cheses = (int[][]) redisTemplate.opsForValue()
                 .get(Constant.CHECKERBOARD_REDIS_ID + checkerBoardInfo.getCheckerBoardID());
+
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessageCode(GameMessage.InitGame.getMessageCode());
         String turnMe = (String) redisTemplate.opsForValue()
@@ -67,9 +78,10 @@ public class PlayService {
         cheseIndex.setRedUserName(checkerBoardInfo.getCode() == CheseCode.Red.getCode() ?
                 userName : checkerBoardInfo.getOppUserName());
         Instant instant = (Instant) redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
-        int time = 0;
+        //获取剩余时间
+        int time = 60;
         if(instant != null){
-           time = (int)(Instant.now().getEpochSecond() - instant.getEpochSecond());
+           time = (int)(instant.getEpochSecond() - Instant.now().getEpochSecond());
         }
         cheseIndex.setRamainTime(time);
         sendMessage(session,cheseIndex);
@@ -149,12 +161,12 @@ public class PlayService {
             redisTemplate.delete(Constant.CHECKERBOARD_REDIS_ID + checkerboardinfo.getCheckerBoardID());
             //添加记录
             GameRecord gameRecord = new GameRecord();
-            gameRecord.setCreated(new Date());
             gameRecord.setType(checkerboardinfo.getType());
-            gameRecord.setUpdated(new Date());
             gameRecord.setUserName(userName);
             gameRecord.setOtherUserName(checkerboardinfo.getOppUserName());
             gameRecord.setResult(true);
+            int playTime = new Date().getMinutes() - checkerboardinfo.getDate().getMinutes();
+            gameRecord.setPlayTime(playTime+"分钟");
             historyClient.addGameRecord(gameRecord);
         } else {
             cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
@@ -247,5 +259,57 @@ public class PlayService {
     //获取rank分值
     public double getRankScore(String userName){
        return rankClient.getRankGrade(userName);
+    }
+
+    //更新用户在线信息和好友列表
+    public void updateFriendShow(String userName, int onLine){
+        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE+userName, onLine);
+        //更新信息
+        friendClient.updateFriendLine(userName, onLine);
+        //获取在线好友
+        List<Friend> friendsByLine = friendClient.getFriendsByLine(userName, Constant.LINE_ON);
+        CheseIndex cheseIndex = new CheseIndex();
+        cheseIndex.setMessageCode(GameMessage.UPDATE_SHOW_FRIENDS.getMessageCode());
+        cheseIndex.setMessage(GameMessage.UPDATE_SHOW_FRIENDS.getMessage());
+        List<String> friendNames = friendsByLine.stream().map(f -> f.getFriendName()).collect(Collectors.toList());
+        cheseIndex.add("friends", friendNames);
+        cheseIndex.setUserName(userName);
+        cheseIndex.add("onLine", onLine);
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE, MQConstant.CHESEINDEX_KEY, cheseIndex);
+    }
+
+    //向大厅所有人发送消息sendMessageToAll
+    public void sendMessageToAll(CheseIndex cheseIndex, String userName) {
+        String message = cheseIndex.getMessage();
+        if(message.length() >= 100 || message.trim().length() == 0){
+            return;
+        }
+        sendMessage(WsHandler.sessionMap.get(userName),cheseIndex);
+        Map<String, WebSocketSession> sessionMap = WsHandler.sessionMap;
+        for(String str : sessionMap.keySet()){
+            if(str.equals(userName)){
+                continue;
+            }
+            Object o = redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + str);
+            if(o == null){
+                continue;
+            }
+            int state = (int) o;
+            //匹配中或者在线则发送消息
+            if(state == Constant.LINE_ON || state == Constant.LINE_MATCH){
+                sendMessage(sessionMap.get(str),cheseIndex);
+            }
+        }
+        //通过mq向其他服务器发送消息 暂未写
+    }
+
+    //向单个人发送消息
+    public void sendMessageToSingle(CheseIndex cheseIndex, String userName) {
+        if(cheseIndex.getMessage().length() > 100 || cheseIndex.getMessage().trim().length() == 0){
+            return;
+        }
+        //接收方
+        String toUserName = cheseIndex.getOppUserName();
+        sendMessage(WsHandler.sessionMap.get(toUserName), cheseIndex);
     }
 }

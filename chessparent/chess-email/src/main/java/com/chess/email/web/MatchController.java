@@ -33,9 +33,14 @@ public class MatchController {
     public Msg lauchPlay(@RequestHeader("username")String userName, @PathVariable("oppUserName")String oppUserName){
         return matchService.lauchPlay(userName, oppUserName);
     }
-    @GetMapping(value = "agreePlay")
-    public Msg agreePlay(@RequestHeader("username")String userName){
-        return null;
+    @GetMapping(value = "friendAgree")
+    public Msg friendAgree(@RequestHeader("username")String userName){
+        return matchService.friendAgree(userName);
+    }
+    //拒绝
+    @GetMapping(value = "friendRefuse")
+    public Msg friendRefuse(@RequestHeader("username")String userName){
+        return matchService.friendRefuse(userName);
     }
 
 }

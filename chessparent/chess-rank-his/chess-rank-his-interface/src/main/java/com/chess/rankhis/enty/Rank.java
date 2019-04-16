@@ -22,6 +22,7 @@ public class Rank implements Serializable {
     private Long id;
 
     private String userName;
+    private String nickName;
 
     //大段位比如黄金
     private Integer rankGrade;

@@ -17,8 +17,9 @@ spring:
           initial-interval: 3000 #重试间隔时间（单位毫秒）
       direct:
         default-requeue-rejected: false #重试次数超过上面的设置之后是否丢弃
-#  redis:
-#    host: localhost
+  redis:
+    host: 120.78.94.125
+    password: 123456
   mail: 
     host: smtp.qq.com
     username: 429667810@qq.com
@@ -39,5 +40,5 @@ chess:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:7001/eureka/
+      defaultZone: http://120.78.94.125:7001/eureka/
     registry-fetch-interval-seconds: 5

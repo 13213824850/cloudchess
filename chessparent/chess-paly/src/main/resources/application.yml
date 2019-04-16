@@ -9,6 +9,9 @@ spring:
     username: guest
     password: guest
     virtual-host: /
+  redis:
+    host: 120.78.94.125
+    password: 123456
 #    listener:
 #      simple:
 #        retry:

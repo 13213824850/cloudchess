@@ -1,5 +1,6 @@
-<template>
-  <div id="app" class="container">
+<template >
+  <div id="app">
+  <div  class="container">
     <div class="row">
       <Head v-show="$route.meta.showHead"></Head>
     </div>
@@ -9,6 +10,7 @@
     <div class="row">
       <Footer v-show="$route.meta.showFooter"></Footer>
     </div>
+  </div>
   </div>
 </template>
 
@@ -31,6 +33,7 @@
   }
 </script>
 
-<style>
-
+<style lang="stylus" rel="stylesheet/stylus">
+  #app
+    background-color #EEEEEE
 </style>

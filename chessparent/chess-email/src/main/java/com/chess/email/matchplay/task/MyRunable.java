@@ -88,6 +88,8 @@ public class MyRunable implements Runnable {
         cheseIndex.setRamainTime(60);
         cheseIndex.setOppUserName(userNameBack);
         cheseIndex.setRedUserName(userNameRed);
+        cheseIndex.setTurnMe(userNameRed);
+        cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
         HashMap<String, Object> map = new HashMap<>();
         map.put("cheses",initCheckerboard);
         map.put("startTime",Instant.now());

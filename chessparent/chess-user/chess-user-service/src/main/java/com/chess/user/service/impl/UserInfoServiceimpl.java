@@ -1,6 +1,7 @@
 package com.chess.user.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -25,6 +26,7 @@ import com.chess.user.vo.UserLogin;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestBody;
 import sun.security.util.Password;
+import tk.mybatis.mapper.entity.Example;
 
 @Service
 @Slf4j
@@ -49,6 +51,16 @@ public class UserInfoServiceimpl implements UserInfoService {
 		UserInfo user = getUserInfo(userInfo.getUserName());
 		if (user != null && user.getCode().length() < 5) {
 			throw new ChessException(ExceptionEnum.ALERYEXIT);
+		}
+		//判断昵称是否已存在
+		if(user.getNickName() == null){
+			throw new ChessException(ExceptionEnum.NICKNAME_NOT_EMPTY);
+		}
+		UserInfo userByNickNameEnty = getUserByNickNameEnty(user.getNickName());
+		if(userByNickNameEnty != null){
+			if(!userByNickNameEnty.getUserName().equals(user.getUserName())){
+				throw  new ChessException(ExceptionEnum.ALERDY_EXIT_NICKNAME);
+			}
 		}
 		// 判断用户是否已注册但未激活
 		if (user != null && user.getCode() != null && user.getCode().length() >= 5) {
@@ -135,5 +147,24 @@ public class UserInfoServiceimpl implements UserInfoService {
 		return Msg.success();
 	}
 
+	@Override
+	public Msg getUserByNickName(String nickName) {
+		UserInfo userInfo = getUserByNickNameEnty(nickName);
+		if(userInfo == null){
+			throw new ChessException(ExceptionEnum.NOTFINDUSER);
+		}
+		return Msg.success().add("userInfo", userInfo);
+	}
+	public UserInfo getUserByNickNameEnty(String nickName){
+		Example example = new Example(UserInfo.class);
+		Example.Criteria criteria = example.createCriteria();
+		criteria.andEqualTo("nickName", nickName);
+		List<UserInfo> userInfos = userInfoMapper.selectByExample(example);
+		UserInfo userInfo = null;
+		if(userInfos.size() != 0){
+			userInfo = userInfos.get(0);
+		}
+		return userInfo;
+	}
 
 }

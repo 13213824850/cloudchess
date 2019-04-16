@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -38,27 +39,31 @@ public class GameRecordSeviceimpl implements GameRecordService {
     }
 
     @Override
-    public Msg addGameRecord(GameRecord gameRecord,String winUserName) {
+    public Msg addGameRecord(GameRecord gameRecord) {
+        Date date = new Date();
         String userName = gameRecord.getUserName();
         String otherName = gameRecord.getOtherUserName();
-        String failUserName = userName==winUserName ? otherName : userName;
-        gameRecord.setUserName(winUserName);
-        gameRecord.setOtherUserName(failUserName);
+        gameRecord.setUserName(userName);
+        gameRecord.setOtherUserName(otherName);
         gameRecord.setResult(true);
+        gameRecord.setPlayTime(gameRecord.getPlayTime());
+        gameRecord.setCreated(date);
+        gameRecord.setUpdated(date);
+        gameRecord.setType(gameRecord.getType());
         gameRecordMapper.insert(gameRecord);
         GameRecord gameRecordnext = new GameRecord();
-        gameRecordnext.setUserName(failUserName);
-        gameRecordnext.setOtherUserName(winUserName);
+        gameRecordnext.setUserName(otherName);
+        gameRecordnext.setOtherUserName(userName);
         gameRecordnext.setResult(false);
-        gameRecordnext.setCreated(gameRecord.getCreated());
-        gameRecordnext.setUpdated(gameRecord.getUpdated());
+        gameRecordnext.setCreated(date);
+        gameRecordnext.setUpdated(date);
         gameRecordnext.setPlayTime(gameRecord.getPlayTime());
         gameRecordnext.setType(gameRecord.getType());
         gameRecordMapper.insert(gameRecordnext);
         if(gameRecord.getType() == GameMessage.RankGame.getMessageCode()){
             //更改rank
-            rankService.updateRank(winUserName,gameRecord.getResult());
-            rankService.updateRank(failUserName,gameRecordnext.getResult());
+            rankService.updateRank(userName,gameRecord.getResult());
+            rankService.updateRank(otherName,gameRecordnext.getResult());
         }
         return Msg.success();
     }

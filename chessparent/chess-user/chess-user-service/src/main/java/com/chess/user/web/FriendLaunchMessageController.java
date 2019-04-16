@@ -17,13 +17,29 @@ public class FriendLaunchMessageController {
     @Autowired
     private FriendLaunchMessageService fls;
 
-    @PostMapping("addMessage")
-    public Msg addFriendLaunchMessage(String friendUserName, @RequestHeader("username") String userName){
+    @PostMapping("addMessage/{friendUserName}")
+    public Msg addFriendLaunchMessage(@PathVariable("friendUserName") String friendUserName, @RequestHeader("username") String userName){
             return fls.addFriendLaunchMessage(userName,friendUserName);
     }
 
-    @GetMapping("updateMessage/{id}")
-    public Msg updateMessage(@RequestHeader("username")String userName, @PathVariable("id") Integer messageId){
-        return fls.updateMessage(userName,messageId);
+    /*
+        @param state 1拒绝 2同意
+        id 消息id
+     */
+    @GetMapping("updateMessage/{id}/{state}")
+    public Msg updateMessage(@RequestHeader("username")String userName, @PathVariable("id") Integer messageId, @PathVariable("state")
+                             Integer state){
+        return fls.updateMessage(userName,messageId,state);
+    }
+
+    //查询是否有好友请求
+    @GetMapping("geLaunchMessages/{state}")
+    public Msg getLaunchMessageByState(@RequestHeader("username")String userName, @PathVariable("state") Integer state){
+        return fls.getLaunchMessageByState(userName, state);
+    }
+    //查询请求个数
+    @GetMapping("getLaunchCount")
+    public Msg getLaunchCount(@RequestHeader("username")String userName){
+        return fls.getLaunchCount(userName);
     }
 }

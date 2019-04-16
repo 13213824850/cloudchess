@@ -5,5 +5,5 @@ import com.chess.rankhis.enty.GameRecord;
 
 public interface GameRecordService {
     Msg getGameRecord(String userName, Integer pn);
-    Msg addGameRecord(GameRecord gameRecord,String winUserName);
+    Msg addGameRecord(GameRecord gameRecord);
 }

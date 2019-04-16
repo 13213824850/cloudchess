@@ -29,7 +29,12 @@ public enum GameMessage {
 	LaunchFriend(501,"添加好友"),
 	ResiveLaunchFriend(502,"接收添加好友请求"),
 	ShowFriends(503,"显示好友"),
-	ShowGameList(504,"显示对局列表");
+	ShowGameList(504,"显示对局列表"),
+	UPDATE_SHOW_FRIENDS(505, "更新好友"),
+	SEND_ALL_MESSAGE(600, "向大厅发送消息"),
+	SEND_SINGLE_MESSAGE(601, "向指定方发送消息"),
+	RECEIVE_LAUNCH_MESSAGE(602, "接收好友请求"),
+	;
 	
 	//状态码
 	private int messageCode;

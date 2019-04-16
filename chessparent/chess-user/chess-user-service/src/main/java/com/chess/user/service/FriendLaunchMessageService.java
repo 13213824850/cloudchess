@@ -11,5 +11,9 @@ import com.chess.common.util.Msg;
 public interface FriendLaunchMessageService {
     Msg addFriendLaunchMessage(String userName, String friendUserName);
 
-    Msg updateMessage(String userName, Integer messageId);
+    Msg updateMessage(String userName, Integer messageId, int state);
+
+    Msg getLaunchMessageByState(String userName, Integer state);
+
+    Msg getLaunchCount(String userName);
 }

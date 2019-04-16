@@ -195,6 +195,7 @@ public class EndApplicationStart implements CommandLineRunner {
         String checkerBoardID = checkerBoardInfo.getCheckerBoardID();
         int[][] cheses = (int[][]) redisTemplate.opsForValue().get(Constant.CHECKERBOARD_REDIS_ID + checkerBoardID);
         CodeIndex codeIndex = Rule.goAutomic(cheses, checkerBoardInfo.getCode());
+        //改变数组
         cheses[codeIndex.getEndX()][codeIndex.getEndY()] = codeIndex.getCode();
         cheses[codeIndex.getStartX()][codeIndex.getStartY()] = 0;
         redisTemplate.opsForValue().set(Constant.CHECKERBOARD_REDIS_ID + checkerBoardID, cheses);
@@ -207,7 +208,7 @@ public class EndApplicationStart implements CommandLineRunner {
         cheseIndex.setUserName(remanTimeVO.getUserName());
         cheseIndex.setOppUserName(checkerBoardInfo.getOppUserName());
         cheseIndex.setRamainTime(60);
-        amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
+        cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
         redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + checkerBoardInfo.getOppUserName(),
                 Instant.now().plusSeconds(60));
         RemanTimeVO timeVO = new RemanTimeVO();
@@ -215,7 +216,8 @@ public class EndApplicationStart implements CommandLineRunner {
         timeVO.setUserName(checkerBoardInfo.getOppUserName());
         redisTemplate.boundSetOps(Constant.REMAN_TIME).add(timeVO);
         redisTemplate.opsForValue().set(Constant.SINGLE_OVER_TIME + checkerBoardInfo.getOppUserName()
-        , Instant.now().plusSeconds(60));
+                , Instant.now().plusSeconds(60));
+        amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
 
 
     }

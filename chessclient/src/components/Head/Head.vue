@@ -4,7 +4,9 @@
      <div class="col-sm-4">
        <h4>
          <div v-if="userInfo.nickName">用户名:{{userInfo.nickName}}
-           <a @click="logOut">注销</a>
+           <a @click="logOut">注销</a>&nbsp;&nbsp;&nbsp;
+
+
        </div>
          <div v-else>
            <router-link to="/login">登录</router-link>|

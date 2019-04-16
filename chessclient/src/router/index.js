@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../pages/Login/Login.vue'
-import Register from  '../pages/Login/Register'
+import Register from '../pages/Login/Register'
 import Index from '../pages/Index/Index'
 import Play from '../pages/Play/Play'
 import Test from '../pages/Test'
+import FriendList from '../pages/Index/Friend/FriendList'
+import LaunchFriend from '../pages/Index/Friend/LaunchFriend'
+
 Vue.use(Router)
 
 export default new Router({
@@ -36,19 +39,38 @@ export default new Router({
       meta: {
         showFooter: true,
         showHead: true
-      }
+      },
+      children: [
+        {
+          path: '/index/friendList',
+          component: FriendList
+        },
+        {
+          path: '/index/launcFriend',
+          component: LaunchFriend
+        },
+      ]
+
     },
     {
       path: '/play',
-      component: Play,
-      meta: {
-        showFooter: false,
-        showHead: false
-      }
-    },
+      component:
+      Play,
+      meta:
+        {
+          showFooter: false,
+          showHead:
+            false
+        }
+      ,
+    }
+    ,
     {
       path: '/test',
-      component: Test
+      component:
+      Test
     }
+    ,
+
   ]
 })

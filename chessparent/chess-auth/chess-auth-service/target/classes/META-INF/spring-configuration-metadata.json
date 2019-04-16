@@ -1,0 +1,53 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt",
+      "type": "com.chess.auth.properties.JwtProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "defaultValue": 0,
+      "name": "chess.jwt.cookie-max-age",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.cookie-name",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.expire",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.pri-key-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.private-key",
+      "type": "java.security.PrivateKey"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.pub-key-path",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.public-key",
+      "type": "java.security.PublicKey"
+    },
+    {
+      "sourceType": "com.chess.auth.properties.JwtProperties",
+      "name": "chess.jwt.secret",
+      "type": "java.lang.String"
+    }
+  ]
+}

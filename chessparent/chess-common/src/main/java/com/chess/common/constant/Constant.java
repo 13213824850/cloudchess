@@ -25,4 +25,16 @@ public class Constant {
 	public static final String REMAN_TIME = "remantime:";
 	//用户超时管理
 	public static final String SINGLE_OVER_TIME = "singleovertime:";
+	//离线
+	public static final int LINE_OFF = 0;
+	//在线
+	public static final int LINE_ON = 1;
+	//匹配中
+	public static final int LINE_MATCH = 2;
+	//对剧中
+	public static final int LINE_PLAY = 3;
+	//好友确认
+	public static final int FRIEND_AGREE = 1;
+	public static final int FRIEND_REFUSE = 2;
+	public static final int FRIEND_ING = 0;
 }

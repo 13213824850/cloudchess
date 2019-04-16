@@ -20,9 +20,9 @@ public class GameRecordController {
     //添加对局记录
     @PostMapping("addRecord")
     @ApiOperation(value = "添加記錄")
-    public Msg addGameRecord(@Validated GameRecord gameRecord, String userName){
+    public Msg addGameRecord(@Validated @RequestBody  GameRecord gameRecord){
 
-        return gameRecordService.addGameRecord(gameRecord,userName);
+        return gameRecordService.addGameRecord(gameRecord);
     }
     //查询对局记录
     @ApiOperation(value = "查詢記錄")

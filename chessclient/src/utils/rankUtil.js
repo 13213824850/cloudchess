@@ -4,9 +4,13 @@ export default {
 
 
   //获取段位信息
-  getRankInfo(userName) {
-    let msg = reqGetRank(userName)
-    console.log(msg.code)
+  getRankInfo(result) {
+    if (result.code != 200) {
+      return {
+        'code': result.code
+      }
+    }
+    let rank = result.data.rank
     let rg = rank.rankGrade
     let rgs = rank.rankGradeStage
     let str
@@ -25,29 +29,30 @@ export default {
     }
     if (rgs === 1) {
       str += 'I'
-    } else if (rgs === 2){
+    } else if (rgs === 2) {
       str += 'I'
-    } else if (rgs === 3){
+    } else if (rgs === 3) {
       str += 'III'
     }
     //获取胜率
     let winRateValue
     let countPlayValue = rank.transportCount + rank.winCount
-    if (countPlayValue === 0){
+    if (countPlayValue === 0) {
       winRateValue = 0
     } else {
-      winRateValue = (rank.winCount / countPlayValue )*100
+      winRateValue = (rank.winCount / countPlayValue) * 100
     }
-
-    return {
-      stage : str,
-      star: rank.star,
-      winRate: winRateValue,
-      countPlay: countPlayValue,
-      userName : rank.userName,
-      windCount : rank.winCount,
-      failCount : rank.transportCount,
+    let respondMsg = {
+      'stage': str,
+      'star': rank.star,
+      'winRate': winRateValue,
+      'countPlay': countPlayValue,
+      'nickName': rank.nickName,
+      'windCount': rank.winCount,
+      'failCount': rank.transportCount,
+      'code': 200
     }
+    return respondMsg
   },
 
 

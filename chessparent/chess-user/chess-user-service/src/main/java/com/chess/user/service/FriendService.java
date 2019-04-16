@@ -1,6 +1,10 @@
 package com.chess.user.service;
 
 import com.chess.common.util.Msg;
+import com.chess.user.pojo.Friend;
+import com.chess.user.pojo.FriendLaunchMessage;
+
+import java.util.List;
 
 /**
  * @Auther: huang yuan li
@@ -11,5 +15,9 @@ import com.chess.common.util.Msg;
 public interface FriendService {
     Msg getFriends(String userName);
 
-    Msg updateFriendLine(String userName);
+    Msg updateFriendLine(String userName, Integer onLine);
+
+    List<Friend> getFriendsByLine(String userName, Integer onLine);
+
+    void addFriend(FriendLaunchMessage friendLaunchMessage);
 }

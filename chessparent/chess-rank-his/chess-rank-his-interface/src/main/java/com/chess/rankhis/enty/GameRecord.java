@@ -22,7 +22,7 @@ public class GameRecord implements Serializable {
     private String  userName;
     private String otherUserName;
     private Boolean result;
-    private int type;
+    private Integer type;
     private String playTime;
     private Date created;
     private Date  updated;

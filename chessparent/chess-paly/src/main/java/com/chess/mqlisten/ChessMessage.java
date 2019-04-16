@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.chess.common.enumcodes.GameMessage;
 import com.chess.common.vo.CheseIndex;
 import com.chess.play.WsHandler;
+import com.chess.user.pojo.Friend;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -15,7 +16,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @Auther: huang yuan li
@@ -55,6 +56,29 @@ public class ChessMessage {
             if (code == GameMessage.AUTOCHESEMOVE.getMessageCode()){
                 sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
                 sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+            if(code == GameMessage.UPDATE_SHOW_FRIENDS.getMessageCode()){
+                List<String> friends = (List<String>) cheseIndex.getMap().get("friends");
+                int onLine = (int) cheseIndex.getMap().get("onLine");
+                CheseIndex sendCheseIndex = new CheseIndex();
+                sendCheseIndex.setMessageCode(cheseIndex.getMessageCode());
+                sendCheseIndex.setMessage(cheseIndex.getMessage());
+                sendCheseIndex.add("onLine", onLine).add("friend",userName);
+                //发送好友在线信息变更消息
+                for(int i = 0; i < friends.size(); i++){
+                    sendMessage(WsHandler.sessionMap.get(friends.get(i)), sendCheseIndex);
+                }
+                return;
+            }
+            //判断是否是添加好友请求
+            if (code == GameMessage.ResiveLaunchFriend.getMessageCode()){
+                sendMessage(WsHandler.sessionMap.get(userName),cheseIndex);
+                return;
+            }
+            //接受好友对战请求
+            if(code == GameMessage.FriendsGame.getMessageCode()){
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
                 return;
             }
         }catch (Exception e){
