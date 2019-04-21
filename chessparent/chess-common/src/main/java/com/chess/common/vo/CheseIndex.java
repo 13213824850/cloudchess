@@ -27,7 +27,10 @@ public class CheseIndex implements Serializable {
 	//红方棋子
 	private String redUserName;
 	private String userName;
+	//昵称
+	private String nickName;
 	private String oppUserName;
+	private String checkBoardInfoId;
 	private Map<String, Object> map= new HashMap<>(); 
 	public  CheseIndex add(String key,Object value) {
 		map.put(key, value);

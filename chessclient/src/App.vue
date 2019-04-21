@@ -4,9 +4,11 @@
     <div class="row">
       <Head v-show="$route.meta.showHead"></Head>
     </div>
+    <br>
     <div class="row">
         <router-view></router-view>
     </div>
+    <br>
     <div class="row">
       <Footer v-show="$route.meta.showFooter"></Footer>
     </div>

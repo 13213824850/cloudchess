@@ -1,16 +1,15 @@
 package com.chess.common.advice;
 
-import org.springframework.validation.BindException;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.chess.common.enumcodes.ExceptionEnum;
 import com.chess.common.exception.ChessException;
 import com.chess.common.util.Msg;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.List;
@@ -32,7 +31,7 @@ public class BasicExceptionHandle {
 	}
 
 	//参数绑定异常处理
-	@ExceptionHandler(value = BindException.class)
+/*	@ExceptionHandler(value = BindException.class)
 	public Msg myBindException(BindException e){
 		List<FieldError> fieldErrors = e.getFieldErrors();
 		String collect = fieldErrors.stream().map(fild -> fild.getDefaultMessage())
@@ -40,6 +39,19 @@ public class BasicExceptionHandle {
 		Msg msg = new Msg();
 		msg.setCode(110);
 		msg.setMessage(collect);
+		return msg;
+	}*/
+
+	@ExceptionHandler(value = MethodArgumentNotValidException.class)
+	public Msg ValidParamBodyException(MethodArgumentNotValidException exception){
+		BindingResult bindingResult = exception.getBindingResult();
+		Msg msg = new Msg();
+		if(bindingResult.hasErrors()){
+			List<ObjectError> allErrors = bindingResult.getAllErrors();
+			String collect = allErrors.stream().map(err -> err.getDefaultMessage()).collect(Collectors.joining("!"));
+			msg.setCode(110);
+			msg.setMessage(collect);
+		}
 		return msg;
 	}
 	

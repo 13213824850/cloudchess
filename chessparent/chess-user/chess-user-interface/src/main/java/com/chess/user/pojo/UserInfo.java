@@ -28,7 +28,7 @@ public class UserInfo implements Serializable {
     private String userName;
 
 	@NotBlank(message = "密码不能为空")
-    @JsonIgnore
+    //@JsonIgnore
     @Length(min = 6, max = 11, message = "密码长度在6-11位" )
     private String password;
 
@@ -43,7 +43,6 @@ public class UserInfo implements Serializable {
 
     private String imageUrl;
 
-    @JsonIgnore
     private Date createTime;
 
     @JsonIgnore

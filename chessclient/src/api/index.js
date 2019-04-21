@@ -3,7 +3,7 @@ import ajax from './ajax'
 //登录
 export const reqLogin = (userName, password) => ajax('/auth/accredit', {userName, password},'POST')
 //注册
-export const reqRegister = (userName,nickName,password) => ajax('/user/register',
+export const reqRegister = ({userName,nickName,password}) => ajax('/user/register',
   {userName, nickName ,password},'POST')
 export const reqUserInfo = ()=> ajax('/user/getUserInfo')
 
@@ -26,6 +26,9 @@ export const requpdateMessage = (id, state) => ajax('/user/updateMessage/'+id +'
 //查询好友列表
 export const reqgetFriends = () =>  ajax('/user/getFriends')
 
+//删除好友
+export const reqDeleteFriend = (friendName) => ajax('/user/deleteFriend/'+friendName)
+
 //注销
 export const reqLogOut = () => ajax('/auth/logout')
 export const reqWs = 'ws://localhost:10010/play/index/'
@@ -42,3 +45,11 @@ export const reqLaunchMatch = (oppUserName) => ajax('/matchGame/lauchPlay/' + op
 export const reqFriendAgree = () => ajax('/matchGame/friendAgree')
 //好友拒绝
 export const reqFriendRefuse = () => ajax('matchGame/friendRefuse')
+
+
+
+//历史记录
+export const reqGameHistory = (pn) => ajax('/rankhis/getGameRecord/'+pn)
+
+//对局记录
+export const reqGameList = (type) => ajax('rankhis/getGameList/'+type)

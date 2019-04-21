@@ -27,13 +27,19 @@ public enum GameMessage {
 	PlayIng(400,"游戏进行中"),
 	JiangJun(403,"将军"),
 	LaunchFriend(501,"添加好友"),
-	ResiveLaunchFriend(502,"接收添加好友请求"),
 	ShowFriends(503,"显示好友"),
 	ShowGameList(504,"显示对局列表"),
 	UPDATE_SHOW_FRIENDS(505, "更新好友"),
+	DELETE_SINGLE_FRIEND(506, "删除好友"),
+	FRIEND_ADD_SUCCESS(507,"好友添加成功后刷新"),
 	SEND_ALL_MESSAGE(600, "向大厅发送消息"),
 	SEND_SINGLE_MESSAGE(601, "向指定方发送消息"),
 	RECEIVE_LAUNCH_MESSAGE(602, "接收好友请求"),
+	WATCH_PLAY(603, "观战"),
+	WATCH_PLAY_MOVE(607, "观战棋子移动"),
+	WATCH_NO_FIND(604,"对局不存在"),
+	ADD_GAME_LIST(605,"添加对局"),
+	DELETE_GAME_LIST(606,"添加对局"),
 	;
 	
 	//状态码

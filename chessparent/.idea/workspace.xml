@@ -2,107 +2,117 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3dbd0f3-8af8-424a-a4b5-4191d801d80c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/Friend/FriendList.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/Friend/LaunchFriend.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/images/haoyou.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/images/paiwei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/images/pipei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/chessparent.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/MQConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/MQUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/SendMessageController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/webtest/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/common/stylus/mixins.styl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/components/AlterTip/AlterTip.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/components/AlterTip/ProcessTip.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/Login/UserAc.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/User/Feedback/FeedBack.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/User/GameHelp/GameHelp.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/User/HistoryPlay/HistoryPlay.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/User/User.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/User/UserInfo/UserInfo.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chessclient/src/pages/WatchPlay/WatchPlay.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/client/GameListClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/client/GameListClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/GameListApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/client/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/mapper/GameListMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameListService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameListimpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameListController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserAc.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-zpkin/chess-zpkin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-zpkin/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chess-zpkin/src/main/java/com/chess/ZpkinApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/IDEA.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/IDEA.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/api/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/api/ajax.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/api/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/components/Footer/Footer.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/components/Footer/Footer.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/components/Head/Head.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/components/Head/Head.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/pages/Index/Index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/pages/Index/Index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/pages/Login/Login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/pages/Login/Login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/pages/Login/Register.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/pages/Login/Register.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/pages/Play/Play.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/pages/Play/Play.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/pages/Test.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/pages/Test.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/store/actions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/store/actions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/store/mutations-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/store/mutations-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../chessclient/src/store/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/store/mutations.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../chessclient/src/utils/rankUtil.js" beforeDir="false" afterPath="$PROJECT_DIR$/../chessclient/src/utils/rankUtil.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/AuthCenterService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/AuthCenterService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/fallback/AuthFallBack.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/fallback/AuthFallBack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/web/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/web/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/fallback/AuthFallBack.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/fallback/AuthFallBack.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/service/AuthService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/web/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-auth/chess-auth-service/target/classes/com/chess/auth/web/AuthController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/cheserules/Rule.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/cheserules/Rule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/src/test/java/com/test/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/test/java/com/test/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/chess-common-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/chess-common-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/cheserules/Rule.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/cheserules/Rule.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/constant/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/constant/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/advice/BasicExceptionHandle.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/advice/BasicExceptionHandle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/enumcodes/ExceptionEnum.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/enumcodes/ExceptionEnum.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/enumcodes/GameMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/enumcodes/GameMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/util/Msg.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/util/Msg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/vo/CheckerBoardInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/vo/CheckerBoardInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/test-classes/com/test/st.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/test-classes/com/test/st.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-common/target/test-classes/com/test/test.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/test-classes/com/test/test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/vo/CheseIndex.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-common/target/classes/com/chess/common/vo/CheseIndex.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-email/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/ChessEmailApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/ChessEmailApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/MatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/MatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-email/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-email/src/test/java/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/src/test/java/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-email/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/ChessEmailApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/ChessEmailApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/init/EndApplicationStart.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/init/EndApplicationStart.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/service/MatchService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/service/MatchService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/task/MyRunable.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/matchplay/task/MyRunable.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/web/MatchController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-email/target/classes/com/chess/email/web/MatchController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-gateway/target/classes/META-INF/spring-configuration-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/chess-gateway/target/classes/META-INF/spring-configuration-metadata.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-gateway/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/ChessPlayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/ChessPlayApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/client/HistoryClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/client/HistoryClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/ChessPlayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/ChessPlayApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/mqlisten/ChessMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/mqlisten/ChessMessage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/play/WsHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/play/WsHandler.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/service/PlayService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-paly/target/classes/com/chess/service/PlayService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/HistoryApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/HistoryApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/Rank.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/Rank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/api/HistoryApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/api/HistoryApi.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/enty/GameRecord.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/enty/GameRecord.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/enty/Rank.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/target/classes/com/chess/rankhis/enty/Rank.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameRecordService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/RankHisApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/RankHisApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/RankService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/RankService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameRecordController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/RankServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/RankServiceimpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/GameRecordService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/GameRecordService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/RankHisApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/RankHisApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/RankService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/RankService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/impl/GameRecordSeviceimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/impl/GameRecordSeviceimpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/web/GameRecordController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/web/GameRecordController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/FriendApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/FriendApi.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/Friend.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/Friend.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/FriendLaunchMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/FriendLaunchMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendLaunchMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendLaunchMessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/impl/RankServiceimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/classes/com/chess/rankhis/service/impl/RankServiceimpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/UserApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/UserApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/target/classes/com/chess/user/api/UserApi.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/target/classes/com/chess/user/api/UserApi.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-interface/target/classes/com/chess/user/pojo/UserInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-interface/target/classes/com/chess/user/pojo/UserInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FriendServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FriendServiceimpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendLaunchMessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendLaunchMessageController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/FriendService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/FriendService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/UserInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/UserInfoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/FriendServiceimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/FriendServiceimpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/UserInfoServiceimpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/service/impl/UserInfoServiceimpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/web/FriendController.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/web/FriendController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/web/UserInfoControllelr.class" beforeDir="false" afterPath="$PROJECT_DIR$/chess-user/chess-user-service/target/classes/com/chess/user/web/UserInfoControllelr.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -122,6 +132,9 @@
     <ignored path="$PROJECT_DIR$/chess-auth/chess-auth-common/target/" />
     <ignored path="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/target/" />
     <ignored path="$PROJECT_DIR$/chess-auth/target/" />
+    <ignored path="$PROJECT_DIR$/chess-zpkin/target/" />
+    <ignored path="$PROJECT_DIR$/demo/target/" />
+    <ignored path="$PROJECT_DIR$/democlient/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,97 +162,13 @@
     <favorites_list name="chessparent" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="446">
-              <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="275" column="36" selection-start-line="275" selection-start-column="36" selection-end-line="275" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="80" column="76" lean-forward="true" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-514">
-              <caret line="87" column="36" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendLaunchMessageController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/utils/CodecUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10">
-              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package.json" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -250,6 +179,7 @@
       <find>Turn</find>
       <find>amqpTemplate</find>
       <find>Keep</find>
+      <find>Msg</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -258,57 +188,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-interface/pom.xml" />
-        <option value="$PROJECT_DIR$/chess-common/pom.xml" />
-        <option value="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/AuthCenterService.java" />
-        <option value="$PROJECT_DIR$/chess-gateway/src/main/resources/application.yml" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/7e17f02b-ae1a-4364-b5a8-ee8e8cfa1611/console_1.sql" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/chess-email/src/main/resources/application.yml" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/Rank.java" />
-        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/cheserules/Rule.java" />
-        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java" />
-        <option value="$PROJECT_DIR$/chess-paly/pom.xml" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/ChessPlayApplication.java" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/webtest/Test.java" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/client/HistoryClient.java" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/HistoryApi.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameRecordService.java" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameRecordController.java" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java" />
-        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameRecord.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/MQUtil.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/MQConstant.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/Constant.java" />
-        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/MatchController.java" />
-        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/SendMessageController.java" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/FriendApi.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/Friend.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/test/java/com/test/test.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendService.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendLaunchMessageService.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendLaunchMessageController.java" />
         <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/FriendLaunchMessage.java" />
-        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java" />
-        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.java" />
         <option value="$PROJECT_DIR$/chess-email/src/test/java/Test.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendService.java" />
+        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java" />
         <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FriendServiceimpl.java" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java" />
-        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/mapper/GameListMapper.java" />
+        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/client/GameListClient.java" />
+        <option value="$PROJECT_DIR$/chess-email/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/client/GameListClient.java" />
+        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/ChessEmailApplication.java" />
+        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/MatchController.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/GameListApi.java" />
         <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/RankService.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/RankServiceimpl.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameRecord.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/client/UserClient.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/RankHisApplication.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/UserApi.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameListService.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameListController.java" />
+        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java" />
+        <option value="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/fallback/AuthFallBack.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/resources/application.yml" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameListimpl.java" />
+        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java" />
+        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java" />
+        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java" />
+        <option value="$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameList.java" />
+        <option value="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/service/AuthService.java" />
+        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/UserInfo.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java" />
+        <option value="$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/web/AuthController.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java" />
+        <option value="$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserAc.java" />
+        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java" />
+        <option value="$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java" />
+        <option value="$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java" />
+        <option value="$PROJECT_DIR$/chess-zpkin/src/main/java/ZpkinApplication.java" />
+        <option value="$PROJECT_DIR$/demo/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-zpkin/pom.xml" />
+        <option value="$PROJECT_DIR$/chess-zpkin/src/main/java/com/chess/ZpkinApplication.java" />
       </list>
     </option>
   </component>
@@ -332,7 +262,7 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds">
     <option name="x" value="77" />
     <option name="y" value="47" />
     <option name="width" value="1279" />
@@ -346,6 +276,17 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="chessparent" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chessparent" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
@@ -353,17 +294,6 @@
             <path>
               <item name="chessparent" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="E:\work\cloudchess\chessparent" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="chessparent" type="b2602c69:ProjectViewProjectNode" />
-              <item name="chessparent" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -386,7 +316,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -463,6 +393,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ChessRegistery" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="chess-registery" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.chess.ChessRegistery" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="RankHisApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="chess-rank-his-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.chess.RankHisApplication" />
@@ -503,7 +440,13 @@
       <workItem from="1555051822259" duration="465000" />
       <workItem from="1555054054490" duration="2009000" />
       <workItem from="1555308161960" duration="14156000" />
-      <workItem from="1555391561969" duration="8746000" />
+      <workItem from="1555391561969" duration="13074000" />
+      <workItem from="1555477624607" duration="12083000" />
+      <workItem from="1555504649732" duration="3026000" />
+      <workItem from="1555565198486" duration="9553000" />
+      <workItem from="1555646849069" duration="16018000" />
+      <workItem from="1555743288825" duration="4649000" />
+      <workItem from="1555823776088" duration="14952000" />
     </task>
     <servers />
   </component>
@@ -513,7 +456,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65163000" />
+    <option name="totallyTimeSpent" value="129772000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -525,20 +468,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="77" y="47" width="1279" height="701" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49756098" visible="true" weight="0.16263238" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4969231" visible="true" weight="0.19114028" />
       <window_info id="Structure" order="1" sideWeight="0.502439" side_tool="true" weight="0.2375189" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" sideWeight="0.502439" side_tool="true" weight="0.2375189" />
-      <window_info id="Web" order="7" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.5030769" side_tool="true" weight="0.17170954" />
       <window_info anchor="bottom" id="Database Console" order="0" weight="0.3295082" />
       <window_info anchor="bottom" id="Messages" order="1" weight="0.3276923" />
       <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" />
+      <window_info anchor="bottom" id="Find" order="3" weight="0.32923076" />
       <window_info anchor="bottom" id="Run" order="4" weight="0.3276923" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
@@ -546,12 +489,12 @@
       <window_info anchor="bottom" id="TODO" order="8" weight="0.32786885" />
       <window_info anchor="bottom" id="Spring" order="9" weight="0.32924694" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5015129" side_tool="true" weight="0.92923075" />
       <window_info anchor="bottom" id="Terminal" order="12" weight="0.32924694" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.32924694" />
       <window_info anchor="bottom" id="Database Changes" order="14" />
-      <window_info anchor="bottom" id="Version Control" order="15" weight="0.32786885" />
-      <window_info anchor="bottom" id="Run Dashboard" order="16" sideWeight="0.49924356" weight="0.92923075" />
+      <window_info anchor="bottom" id="Version Control" order="15" weight="0.3276923" />
+      <window_info anchor="bottom" id="Run Dashboard" order="16" sideWeight="0.49848714" weight="0.9276923" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24939074" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -572,31 +515,31 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java">
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameRecordService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/client/UserClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
-          <caret line="15" column="24" lean-forward="true" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+          <caret line="35" column="24" selection-start-line="35" selection-start-column="24" selection-end-line="35" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/api/HistoryApi.java">
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/client/UserClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/RankService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="50" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/webtest/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+        <state relative-caret-position="110">
+          <caret line="5" column="41" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -605,81 +548,141 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/RankHisApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="264">
+          <caret line="17" column="15" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameRecordController.java">
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="24" column="37" lean-forward="true" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+        <state relative-caret-position="208">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameRecordService.java">
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/UserApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="13" lean-forward="true" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="41" column="33" lean-forward="true" selection-start-line="41" selection-start-column="33" selection-end-line="41" selection-end-column="33" />
-          <folding>
-            <element signature="method#getGameRecord#0;class#GameRecordSeviceimpl#0" />
-          </folding>
+        <state relative-caret-position="418">
+          <caret line="23" column="80" selection-start-line="23" selection-start-column="80" selection-end-line="23" selection-end-column="80" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameRecord.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/RankServiceimpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-264">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/FriendLaunchMessageApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="38" column="35" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/web/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-202">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/MQUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/MQConstant.java">
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameRecordSeviceimpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="42" selection-start-line="5" selection-start-column="42" selection-end-line="5" selection-end-column="42" />
+        <state relative-caret-position="203">
+          <caret line="42" column="56" lean-forward="true" selection-start-line="42" selection-start-column="56" selection-end-line="42" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheckerBoardInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="16" column="33" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/GameListService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="8" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/web/GameListController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="18" column="37" lean-forward="true" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#539#540#0" expanded="true" />
+            <element signature="e#599#600#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/AuthCenterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/fallback/AuthFallBack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="e#575#576#0" expanded="true" />
+            <element signature="e#602#603#0" expanded="true" />
+            <element signature="e#674#675#0" expanded="true" />
+            <element signature="e#701#702#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/test.java" />
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="67" column="21" selection-start-line="67" selection-start-column="21" selection-end-line="67" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" selection-start-line="12" selection-end-line="17" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="14" lean-forward="true" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-registery/src/main/java/com/chess/ChessRegistery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-service/src/main/java/com/chess/rankhis/service/impl/GameListimpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="46" column="14" selection-start-line="46" selection-start-column="14" selection-end-line="46" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="28" column="28" lean-forward="true" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-rank-his/chess-rank-his-interface/src/main/java/com/chess/rankhis/enty/GameList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -690,261 +693,224 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="38" column="9" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="37" column="25" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/MatchController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="31" column="50" lean-forward="true" selection-start-line="31" selection-start-column="50" selection-end-line="31" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/web/SendMessageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/Friend.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-gateway/src/main/java/com/chess/ChessGateway.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/test/java/com/test/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="23" lean-forward="true" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/api/FriendApi.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="21" column="27" selection-start-line="21" selection-start-column="27" selection-end-line="21" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/constant/Constant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="34" column="36" lean-forward="true" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="129" column="76" selection-start-line="129" selection-start-column="72" selection-end-line="129" selection-end-column="76" />
-          <folding>
-            <element signature="method#getFloatSorce#0;class#EndApplicationStart#0" />
-            <element signature="method#checkOverTime#0;class#EndApplicationStart#0" />
-            <element signature="method#goAutomatic#0;class#EndApplicationStart#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/ChessPlayApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="19" column="25" selection-start-line="19" selection-start-column="25" selection-end-line="19" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/ExceptionEnum.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="19" column="40" selection-start-line="19" selection-start-column="40" selection-end-line="19" selection-end-column="40" />
+        <state relative-caret-position="264">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java">
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/exception/ChessException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="29" column="22" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="22" />
+        <state relative-caret-position="154">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/5.1.32/mysql-connector-java-5.1.32.jar!/com/mysql/jdbc/AbandonedConnectionCleanupThread.class">
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/vo/UserLogin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/resources/application.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        <state relative-caret-position="242">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/pom.xml">
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/advice/BasicExceptionHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-144">
-          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="701">
+          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/UserInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="23" column="29" lean-forward="true" selection-start-line="23" selection-start-column="29" selection-end-line="23" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2694">
-          <caret line="153" column="64" selection-start-line="153" selection-start-column="64" selection-end-line="153" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-interface/src/main/java/com/chess/user/pojo/FriendLaunchMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="19" column="9" lean-forward="true" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FrienndLaunchMessageServiceimpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="96" column="13" lean-forward="true" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
-          <folding>
-            <element signature="method#addFriendLaunchMessage#0;class#FrienndLaunchMessageServiceimpl#0" />
-            <element signature="method#updateMessage#0;class#FrienndLaunchMessageServiceimpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/test/java/Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendLaunchMessageService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/FriendService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/FriendServiceimpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="64" column="59" lean-forward="true" selection-start-line="64" selection-start-column="59" selection-end-line="64" selection-end-column="59" />
+        <state relative-caret-position="418">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java">
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/service/AuthService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
+        <state relative-caret-position="352">
+          <caret line="28" column="14" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/vo/CheseIndex.java">
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/CookieUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        <state relative-caret-position="208">
+          <caret line="77" column="29" selection-start-line="77" selection-start-column="29" selection-end-line="77" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java">
+    <entry file="file://$PROJECT_DIR$/chess-auth/chess-auth-service/src/main/java/com/chess/auth/web/AuthController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="275" column="36" selection-start-line="275" selection-start-column="36" selection-end-line="275" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="80" column="76" lean-forward="true" selection-start-line="80" selection-start-column="76" selection-end-line="80" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-514">
-          <caret line="87" column="36" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="26" column="33" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/FriendLaunchMessageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        <state relative-caret-position="428">
+          <caret line="70" column="33" lean-forward="true" selection-start-line="70" selection-start-column="33" selection-end-line="70" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserInfoControllelr.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        <state relative-caret-position="-66">
+          <caret line="26" column="7" selection-start-line="26" selection-start-column="7" selection-end-line="26" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="498">
+          <caret line="68" column="21" selection-start-line="68" selection-start-column="21" selection-end-line="68" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/impl/UserInfoServiceimpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="146" column="20" lean-forward="true" selection-start-line="146" selection-start-column="20" selection-end-line="146" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/service/UserInfoService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/util/Msg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="25" column="19" lean-forward="true" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/web/UserAc.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="404">
+          <caret line="28" column="62" lean-forward="true" selection-start-line="28" selection-start-column="62" selection-end-line="28" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chess-user/chess-user-service/src/main/java/com/chess/user/utils/CodecUtils.java">
+    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/task/MyRunable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="34" lean-forward="true" selection-start-line="34" selection-end-line="34" />
+        <state relative-caret-position="388">
+          <caret line="95" column="43" lean-forward="true" selection-start-line="95" selection-start-column="43" selection-end-line="95" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-common/src/main/java/com/chess/common/enumcodes/GameMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/mqlisten/ChessMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="119" column="51" selection-start-line="119" selection-start-column="40" selection-end-line="119" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/service/PlayService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1880">
+          <caret line="279" column="68" selection-start-line="279" selection-start-column="60" selection-end-line="279" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-paly/src/main/java/com/chess/play/WsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="63" column="25" lean-forward="true" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+          <folding>
+            <element signature="method#afterConnectionEstablished#0;class#WsHandler#0" />
+            <element signature="method#handleTextMessage#0;class#WsHandler#0" />
+            <element signature="e#7320#7321#0" expanded="true" />
+            <element signature="e#7354#7355#0" expanded="true" />
+            <element signature="e#7410#7411#0" expanded="true" />
+            <element signature="e#7449#7450#0" expanded="true" />
+            <element signature="e#7505#7506#0" expanded="true" />
+            <element signature="e#7544#7545#0" expanded="true" />
+            <element signature="method#sendMessage#0;class#WsHandler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/ChessEmailApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-email/src/main/resources/application.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-478" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/service/MatchService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1504">
+          <caret line="126" column="35" selection-start-line="126" selection-start-column="35" selection-end-line="126" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-email/src/main/java/com/chess/email/matchplay/init/EndApplicationStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="122" column="43" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
+          <folding>
+            <element signature="method#getFloatSorce#0;class#EndApplicationStart#0" />
+            <element signature="method#checkOverTime#0;class#EndApplicationStart#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/democlient/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/org/springframework/cloud/spring-cloud-starter-sleuth/2.0.1.RELEASE/spring-cloud-starter-sleuth-2.0.1.RELEASE.pom">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="43" column="12" selection-start-line="43" selection-start-column="12" selection-end-line="43" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-zpkin/src/main/java/com/chess/ZpkinApplication.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chess-zpkin/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="39" lean-forward="true" selection-start-line="15" selection-start-column="39" selection-end-line="15" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -998,11 +964,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>chess-zipkin</last-edited>
+          <last-edited>chess-zpkin</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

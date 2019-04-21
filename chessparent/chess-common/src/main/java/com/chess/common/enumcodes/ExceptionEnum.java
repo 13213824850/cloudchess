@@ -27,6 +27,7 @@ public enum ExceptionEnum {
 	WE_PLAYING(405, "已在匹配中请勿重复"),
 	CONFIRM_OVER_TIME(406,"确认超时"),
 	NOT_FIND_FRIEND(407, "未找到好友"),
+	LAUNCH_FRIEND_ALERDY_EXIT(408,"添加好友信息已存在，请勿重复添加"),
 ;
 	//异常状态码和消息
 	private int code;

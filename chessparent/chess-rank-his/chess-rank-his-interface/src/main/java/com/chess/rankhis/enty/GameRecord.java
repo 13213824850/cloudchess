@@ -20,7 +20,9 @@ public class GameRecord implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String  userName;
+    private String nickName;
     private String otherUserName;
+    private String otherNickName;
     private Boolean result;
     private Integer type;
     private String playTime;

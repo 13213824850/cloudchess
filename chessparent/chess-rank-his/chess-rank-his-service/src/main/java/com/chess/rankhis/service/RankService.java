@@ -12,4 +12,5 @@ public interface RankService {
     Double getRankGrade(String userName);
     void updateRank(String userName,Boolean result);
     Rank getRank(String userName );
+    void updateRankPlayCount(String userName, Boolean result);
 }

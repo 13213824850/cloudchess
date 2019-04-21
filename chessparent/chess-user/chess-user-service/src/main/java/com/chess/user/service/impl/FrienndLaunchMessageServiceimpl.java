@@ -49,6 +49,26 @@ public class FrienndLaunchMessageServiceimpl implements FriendLaunchMessageServi
         if(friendUserInfo == null){
             throw new ChessException(ExceptionEnum.NOT_FIND_FRIEND);
         }
+        //判断是否已经存在
+        Example example = new Example(FriendLaunchMessage.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName",friendUserName);
+        criteria.andEqualTo("launchUserName",userName);
+        List<FriendLaunchMessage> friendLaunchMessages = friendLaunchMessageMapper.selectByExample(example);
+        if(friendLaunchMessages != null && friendLaunchMessages.size() > 0){
+            //判断状态
+            FriendLaunchMessage friendLaunchMessage = friendLaunchMessages.get(0);
+            Integer state = friendLaunchMessage.getState();
+            if(state == 0){
+                throw new ChessException(ExceptionEnum.LAUNCH_FRIEND_ALERDY_EXIT);
+            }
+            //更改状态
+            friendLaunchMessage.setState(0);
+            friendLaunchMessage.setUpdated(new Date());
+            friendLaunchMessageMapper.updateByPrimaryKey(friendLaunchMessage);
+            return Msg.success();
+        }
+
         //添加请求
         FriendLaunchMessage friendLaunchMessage = new FriendLaunchMessage();
         friendLaunchMessage.setCreated(new Date());
@@ -63,14 +83,15 @@ public class FrienndLaunchMessageServiceimpl implements FriendLaunchMessageServi
         friendLaunchMessageMapper.insert(friendLaunchMessage);
 
         //向对方发送消息
-        int line = (int) redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + friendUserName);
-        if(line != 0){
+        Integer line = (Integer) redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + friendUserName);
+        if(line != null && line != 0){
             //如果在线发送消息
             CheseIndex cheseIndex = new CheseIndex();
             //设置发送给谁
-            cheseIndex.setUserName(friendUserName);
+            cheseIndex.setOppUserName(friendUserName);
             //设置状态吗
             cheseIndex.setMessageCode(GameMessage.RECEIVE_LAUNCH_MESSAGE.getMessageCode());
+            cheseIndex.setMessage(GameMessage.RECEIVE_LAUNCH_MESSAGE.getMessage());
             amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
         }
         return Msg.success();
@@ -109,6 +130,7 @@ public class FrienndLaunchMessageServiceimpl implements FriendLaunchMessageServi
         Example example = new Example(FriendLaunchMessage.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("state",0);
+        criteria.andEqualTo("userName",userName);
         int count = friendLaunchMessageMapper.selectCountByExample(example);
         return Msg.success().add("count",count);
     }

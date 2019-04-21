@@ -76,7 +76,7 @@ public class EndApplicationStart implements CommandLineRunner {
         MatchInfo[] matchInfoPools = new MatchInfo[matchSize > 0 ? matchSize : 1];
 
         matchInfos.toArray(matchInfoPools);
-        log.info("匹配人数{},匹配信息{}", matchSize, matchInfoPools);
+        log.info("匹配人数{}type{},匹配信息{}", matchType,matchSize, matchInfoPools);
         // 按照分数分布排序
         //遍历
         MatchInfo matchInfo = matchInfoPools[0];
@@ -109,12 +109,18 @@ public class EndApplicationStart implements CommandLineRunner {
     //配对成功
     private void matchSuccess(MatchInfo matchInfo, MatchInfo matchInfoNext, int matchType) {
         //初始化对局;修改用户在线信息  移除匹配池
-        redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfo);
-        redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfoNext);
+        if(matchType == GameMessage.MatchGame.getMessageCode()){
+            redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfo);
+            redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfoNext);
+        }else if(matchType == GameMessage.RankGame.getMessageCode()){
+            redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).remove(matchInfo);
+            redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).remove(matchInfoNext);
+        }
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessageCode(GameMessage.ConnecGame.getMessageCode());
         cheseIndex.setUserName(matchInfo.getUserName());
         cheseIndex.setOppUserName(matchInfoNext.getUserName());
+        cheseIndex.setRamainTime(expirTime);
         //向redis放入对局失效时间
         MatchGameInfo matchGameInfo = new MatchGameInfo(matchInfoNext.getUserName(), matchType, null);
         MatchGameInfo matchGameInfoNext = new MatchGameInfo(matchInfo.getUserName(), matchType, null);
@@ -129,7 +135,7 @@ public class EndApplicationStart implements CommandLineRunner {
         //判断是否还在匹配中
         Integer mi = (Integer) redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + matchInfo.getUserName());
         Integer nt = (Integer) redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + next.getUserName());
-        if (mi != 1) {
+        if (mi != Constant.LINE_MATCH) {
             //用户不在匹配队列
             log.info("用户{}断开哦",matchInfo.getUserName());
             redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfo);

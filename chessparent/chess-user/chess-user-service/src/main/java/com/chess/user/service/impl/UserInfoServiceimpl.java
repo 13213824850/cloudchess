@@ -53,12 +53,12 @@ public class UserInfoServiceimpl implements UserInfoService {
 			throw new ChessException(ExceptionEnum.ALERYEXIT);
 		}
 		//判断昵称是否已存在
-		if(user.getNickName() == null){
+		if(userInfo.getNickName() == null){
 			throw new ChessException(ExceptionEnum.NICKNAME_NOT_EMPTY);
 		}
-		UserInfo userByNickNameEnty = getUserByNickNameEnty(user.getNickName());
+		UserInfo userByNickNameEnty = getUserByNickNameEnty(userInfo.getNickName());
 		if(userByNickNameEnty != null){
-			if(!userByNickNameEnty.getUserName().equals(user.getUserName())){
+			if(!userByNickNameEnty.getUserName().equals(userInfo.getUserName())){
 				throw  new ChessException(ExceptionEnum.ALERDY_EXIT_NICKNAME);
 			}
 		}
@@ -155,6 +155,12 @@ public class UserInfoServiceimpl implements UserInfoService {
 		}
 		return Msg.success().add("userInfo", userInfo);
 	}
+
+	@Override
+	public UserInfo getUserInfoByName(String userName) {
+		return getUserInfo(userName);
+	}
+
 	public UserInfo getUserByNickNameEnty(String nickName){
 		Example example = new Example(UserInfo.class);
 		Example.Criteria criteria = example.createCriteria();

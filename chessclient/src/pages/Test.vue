@@ -1,17 +1,21 @@
 <template>
   <div id="vm">
-    时间：{{playTime +''}}
+    <process-tip></process-tip>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import moment from 'moment'
+  import ProcessTip from '../components/AlterTip/ProcessTip'
   export default {
     data() {
       return {
         playTime: '',
         startTime: ''
       }
+    },
+    components:{
+      ProcessTip
     },
     mounted() {
       this.showTime()

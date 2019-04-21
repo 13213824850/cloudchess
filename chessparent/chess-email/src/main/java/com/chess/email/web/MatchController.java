@@ -19,8 +19,11 @@ public class MatchController {
 
     @Autowired
     private MatchService matchService;
+
+    //确认对战
     @GetMapping("confirmMatch")
     public Msg confirmMatch(@RequestHeader("username")String userName){
+
         return matchService.confirmMatch(userName);
     }
     @GetMapping("refuseGame")

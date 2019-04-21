@@ -39,7 +39,7 @@ public class AuthController {
 
     //登录授权
     @PostMapping(value = "accredit")
-    public Msg login(@Validated  @RequestBody UserLogin userLogin, HttpServletResponse response, HttpServletRequest request){
+    public Msg login( @RequestBody @Validated UserLogin userLogin, HttpServletResponse response, HttpServletRequest request){
         String token = authService.login(userLogin);
         //写入cookie
         if(StringUtils.isBlank(token)){

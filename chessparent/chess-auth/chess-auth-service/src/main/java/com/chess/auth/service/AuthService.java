@@ -7,12 +7,9 @@ import com.chess.auth.properties.JwtProperties;
 import com.chess.auth.utils.JwtUtils;
 import com.chess.common.enumcodes.ExceptionEnum;
 import com.chess.common.exception.ChessException;
-import com.chess.common.util.Msg;
-import com.chess.user.api.UserApi;
 import com.chess.user.pojo.UserInfo;
 import com.chess.user.vo.UserLogin;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -33,9 +30,9 @@ public class AuthService {
     private FriendClient friendClient;
     @Autowired
     private JwtProperties props;
-    public String  login(UserLogin userLogin){
+    public String  login( UserLogin userLogin){
         UserInfo userInfo = userClient.queryUserInfo(userLogin.getUserName(),userLogin.getPassword());
-        if(StringUtils.isBlank(userInfo.getUserName())){
+        if(userInfo == null){
             throw new ChessException(ExceptionEnum.NOTFINDUSER);
         }
         log.info("userinfo{}",userInfo);

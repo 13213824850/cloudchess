@@ -1,11 +1,17 @@
 package com.chess.user.service.impl;
 
 import com.chess.common.constant.Constant;
+import com.chess.common.constant.MQConstant;
+import com.chess.common.enumcodes.ExceptionEnum;
+import com.chess.common.enumcodes.GameMessage;
+import com.chess.common.exception.ChessException;
 import com.chess.common.util.Msg;
+import com.chess.common.vo.CheseIndex;
 import com.chess.user.mapper.FriendMapper;
 import com.chess.user.pojo.Friend;
 import com.chess.user.pojo.FriendLaunchMessage;
 import com.chess.user.service.FriendService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -27,6 +33,8 @@ public class FriendServiceimpl implements FriendService {
     private FriendMapper friendMapper;
     @Resource
     private RedisTemplate redisTemplate;
+    @Autowired
+    AmqpTemplate amqpTemplate;
     @Override
     public Msg getFriends(String userName) {
         Friend friend = new Friend();
@@ -83,5 +91,50 @@ public class FriendServiceimpl implements FriendService {
         otherFriend.setOnLine(friendState);
         friendMapper.insert(friend);
         friendMapper.insert(otherFriend);
+
+        //发送mq消息显示好友添加
+        CheseIndex cheseIndex = new CheseIndex();
+        cheseIndex.setMessage(GameMessage.FRIEND_ADD_SUCCESS.getMessage());
+        cheseIndex.setMessageCode(GameMessage.FRIEND_ADD_SUCCESS.getMessageCode());
+        cheseIndex.setUserName(friendLaunchMessage.getLaunchUserName());
+        cheseIndex.add("friend", otherFriend);
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
+        cheseIndex.add("friend",friend);
+        cheseIndex.setUserName(friendLaunchMessage.getUserName());
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
+
+    }
+
+    //删除相互好友
+    //发送好友更新请求给对方
+    @Override
+    public Msg deleteFriend(String userName, String friendName) {
+        //查询是否是好友
+        Example example = new Example(Friend.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName",userName);
+        criteria.andEqualTo("friendName", friendName);
+        List<Friend> friends = friendMapper.selectByExample(example);
+        if(friends == null || friends.size() == 0){
+            throw new ChessException(ExceptionEnum.NOT_FIND_FRIEND);
+        }
+        //删除互相好友
+        deleteFriendByNameAndFriendName(userName, friendName);
+        deleteFriendByNameAndFriendName(friendName,userName);
+        //发送消息
+        CheseIndex cheseIndex = new CheseIndex();
+        cheseIndex.setUserName(userName);
+        cheseIndex.setMessageCode(GameMessage.DELETE_SINGLE_FRIEND.getMessageCode());
+        cheseIndex.setMessage(GameMessage.DELETE_SINGLE_FRIEND.getMessage());
+        cheseIndex.setOppUserName(friendName);
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
+        return Msg.success();
+    }
+    public void deleteFriendByNameAndFriendName(String userName, String friendName){
+        Example example = new Example(Friend.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName",userName);
+        criteria.andEqualTo("friendName", friendName);
+        friendMapper.deleteByExample(example);
     }
 }

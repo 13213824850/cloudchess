@@ -36,4 +36,13 @@ public class FriendController {
     public List<Friend> getFriendsByLine(@RequestHeader("username")String userName, @PathVariable("onLine") Integer onLine){
         return friendService.getFriendsByLine(userName, onLine);
     }
+
+    //删除好友
+    @GetMapping("deleteFriend/{friendName}")
+    @ApiOperation(value = "删除好友")
+    public Msg deleteFriend (@RequestHeader("username")String userName,@PathVariable("friendName") String friendName){
+        return friendService.deleteFriend(userName,friendName);
+    }
+
+
 }

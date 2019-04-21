@@ -2,12 +2,14 @@ package com.chess.play;
 
 import com.alibaba.fastjson.JSON;
 import com.chess.client.FriendClient;
+import com.chess.client.GameListClient;
 import com.chess.common.constant.Constant;
 import com.chess.common.enumcodes.GameMessage;
 import com.chess.common.util.Msg;
 import com.chess.common.vo.CheckerBoardInfo;
 import com.chess.common.vo.CheseIndex;
 import com.chess.common.vo.MatchInfo;
+import com.chess.rankhis.api.GameListApi;
 import com.chess.service.PlayService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,12 +44,18 @@ public class WsHandler extends TextWebSocketHandler {
     private RedisTemplate<Object, Object> redisTemplate;
     @Autowired
     private FriendClient friendClient;
+    @Autowired
+    private GameListClient gameListClient;
 
     @Autowired
     private PlayService playService;
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
        playService.updateFriendShow(sessionIds.get(session.getId()), Constant.LINE_OFF);
+       String userName = sessionIds.get(session.getId());
+       //移除匹配 排位对局
+        redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).remove(matchInfos.get(userName));
+        redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).remove(matchInfos.get(userName));
         // 删除在线信息
         redisTemplate.delete(Constant.KEEP_ALIVE + sessionIds.get(session.getId()));
         sessionMap.remove(sessionIds.get(session.getId()));
@@ -109,6 +117,8 @@ public class WsHandler extends TextWebSocketHandler {
             playService.sendMessageToAll(cheseIndex, userName);
         }else if(messageCode == GameMessage.SEND_SINGLE_MESSAGE.getMessageCode()){
             playService.sendMessageToSingle(cheseIndex, userName);
+        }else if(messageCode == GameMessage.WATCH_PLAY.getMessageCode()){
+            playService.watchPlay(userName,cheseIndex.getCheckBoardInfoId());
         }
 
     }
@@ -176,8 +186,6 @@ public class WsHandler extends TextWebSocketHandler {
         sessionMap.put(userName, session);
         // 显示好友
         Msg msgFriends = friendClient.getFriends(userName);
-        log.info("服务内部调用");
-        log.info("好友信息{}",msgFriends);
         Map<String, Object> friends = null;
         if(msgFriends.getCode() == 200 && msgFriends.getData() != null && msgFriends.getData().size()!=0){
             friends = msgFriends.getData();

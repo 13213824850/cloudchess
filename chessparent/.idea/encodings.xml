@@ -16,11 +16,8 @@
     <file url="file://$PROJECT_DIR$/chess-user" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chess-user/chess-user-interface" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/chess-user/chess-user-service" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/chess-zipkin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/chess-zpkin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/democlient" charset="UTF-8" />
   </component>
 </project>

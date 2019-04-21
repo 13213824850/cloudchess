@@ -7,6 +7,8 @@ import com.chess.common.util.RuleUtil;
 import com.chess.common.vo.CheckerBoardInfo;
 import com.chess.common.vo.CheseIndex;
 import com.chess.common.vo.RemanTimeVO;
+import com.chess.email.client.GameListClient;
+import com.chess.rankhis.enty.GameList;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,12 +35,12 @@ import java.util.UUID;
 @AllArgsConstructor
 public class MyRunable implements Runnable {
 
-    RedisTemplate<Object, Object> redisTemplate;
+    RedisTemplate<Object,Object> redisTemplate;
     AmqpTemplate amqpTemplate;
     private int matchType;
     private String userNameRed;
     private String userNameBack;
-
+    private GameListClient gameListClient;
     @Override
     public void run() {
         log.info("查看注入的redis和amq{},{}",redisTemplate,amqpTemplate);
@@ -94,10 +96,13 @@ public class MyRunable implements Runnable {
         map.put("cheses",initCheckerboard);
         map.put("startTime",Instant.now());
         cheseIndex.setMap(map);
-
+        redisTemplate.opsForValue().set(checkerboardid,userNameRed+":"+userNameBack);
         //发送消息
         log.info("初始化成准备发送mq消息");
         amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
         log.info("发送mq消息成功");
+        //添加到对局记录列表
+        GameList gameList = new GameList(null, userNameRed, 0, userNameBack, 0,matchType,new Date(),checkerboardid);
+        gameListClient.addGameList(gameList);
     }
 }

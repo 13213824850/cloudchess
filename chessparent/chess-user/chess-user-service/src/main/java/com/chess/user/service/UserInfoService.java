@@ -18,4 +18,6 @@ public interface UserInfoService {
 	Msg activeAccount(ActionCode acCode);
 
     Msg getUserByNickName(String nickName);
+
+    UserInfo getUserInfoByName(String userName);
 }

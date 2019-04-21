@@ -4,11 +4,17 @@ spring:
   application:
     name: chess-rankhis-service
   datasource:
-      url: jdbc:mysql://120.78.94.125:3306/chese
-      username: chese
-      password: 1234
+    url: jdbc:mysql://120.78.94.125:3306/chese
+    username: chese
+    password: 1234
   redis:
     host:
+  rabbitmq:
+    host: 120.78.94.125
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
 eureka:
   client:
     service-url:

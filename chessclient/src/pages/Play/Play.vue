@@ -49,7 +49,7 @@
       </div>
     </div>
   </div>
-  <div class="row" v-else style="align-content:">
+  <div class="row" v-else style="align-content:center">
     <center style="margin-top: 200px;">
       <h2>
         <router-link to="/index">重新连接</router-link>

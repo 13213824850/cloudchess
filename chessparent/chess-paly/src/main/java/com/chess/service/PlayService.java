@@ -2,6 +2,7 @@ package com.chess.service;
 
 import com.alibaba.fastjson.JSON;
 import com.chess.client.FriendClient;
+import com.chess.client.GameListClient;
 import com.chess.client.HistoryClient;
 import com.chess.client.RankClient;
 import com.chess.common.cheserules.Rule;
@@ -54,6 +55,8 @@ public class PlayService {
     private RankClient rankClient;
     @Autowired
     private FriendClient friendClient;
+    @Autowired
+    private GameListClient gameListClient;
 
     /**
      * @Auther:huang yuan li
@@ -152,6 +155,7 @@ public class PlayService {
         if (gameState == GameMessage.BackWin.getMessageCode() || gameState == GameMessage.RedWin.getMessageCode()) {
             log.debug("游戏结束gameState{}", gameState);
             // 清楚数据
+            redisTemplate.delete(checkerboardinfo.getCheckerBoardID());
             cheseIndex.setGameState(gameState);
             checkerboardinfo.setGameState(gameState);
             redisTemplate.delete(Constant.CHECKBOARD_INFO + userName);
@@ -167,7 +171,14 @@ public class PlayService {
             gameRecord.setResult(true);
             int playTime = new Date().getMinutes() - checkerboardinfo.getDate().getMinutes();
             gameRecord.setPlayTime(playTime+"分钟");
-            historyClient.addGameRecord(gameRecord);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    historyClient.addGameRecord(gameRecord);
+                    gameListClient.deleteGameList(checkerboardinfo.getCheckerBoardID());
+                }
+            }).start();
+            //删除对战记录
         } else {
             cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
             redisTemplate.opsForValue().set("turnMe:" + checkerboardinfo.getCheckerBoardID(), turnMe);
@@ -183,6 +194,9 @@ public class PlayService {
         log.debug("对方userName{}", checkerboardinfo.getOppUserName());
         amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
         sendMessage(session, cheseIndex);
+        cheseIndex.setMessageCode(GameMessage.WATCH_PLAY_MOVE.getMessageCode());
+        cheseIndex.setCheckBoardInfoId(checkerboardinfo.getCheckerBoardID());
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
 
     }
     //检查棋子移动规则
@@ -310,6 +324,40 @@ public class PlayService {
         }
         //接收方
         String toUserName = cheseIndex.getOppUserName();
+        cheseIndex.setUserName(userName);
         sendMessage(WsHandler.sessionMap.get(toUserName), cheseIndex);
+        sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+    }
+
+    /**
+     * @param userName 用户账号
+     * @param checkBoardInfoId 棋盘id
+     * @Description: 用户观战： 1、查询企盼信息 2、添加到观战集合、3、发送消息
+     */
+    public void watchPlay(String userName, String checkBoardInfoId) {
+        Object cheses = redisTemplate.opsForValue()
+                .get(Constant.CHECKERBOARD_REDIS_ID + checkBoardInfoId);
+        CheseIndex cheseIndex = new CheseIndex();
+        if(cheses == null){
+            cheseIndex.setMessageCode(GameMessage.WATCH_NO_FIND.getMessageCode());
+            cheseIndex.setMessage(GameMessage.WATCH_NO_FIND.getMessage());
+            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+            return;
+        }
+        //添加观战集合
+        redisTemplate.boundSetOps(checkBoardInfoId).add(userName);
+        Object o = redisTemplate.opsForValue().get(checkBoardInfoId);
+        if(o == null){
+            return;
+        }
+        String str = (String) o;
+        String[] split = str.split(":");
+        cheseIndex.setUserName(split[0]);
+        cheseIndex.setOppUserName(split[1]);
+        //强制类型转化
+        int [][] chese = (int[][]) cheses;
+        cheseIndex.add("cheses",chese);
+        cheseIndex.setMessageCode(GameMessage.WATCH_PLAY.getMessageCode());
+        sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class UserInfoControllelr {
 
@@ -16,16 +18,11 @@ public class UserInfoControllelr {
 	private UserInfoService userInfoService;
 	
 	@ApiOperation(value="添加用户",notes="")
-	@PostMapping("/register")
-	public Msg addUser(@ModelAttribute @RequestBody @Validated UserInfo userInfo) {
+	@PostMapping(value = "/register")
+	public Msg addUser( @RequestBody @Valid UserInfo userInfo) {
 		return userInfoService.addUser(userInfo);
 	}
-	
-	@ApiOperation(value="激活用户",notes="邮箱链接")
-	@GetMapping("/activeAcount")
-	public Msg activeAccount(@ModelAttribute @RequestBody @Validated ActionCode ac) {
-		return userInfoService.activeAccount(ac);
-	}
+
 
 	/**
 	 * @Auther:huang yuan li
@@ -47,6 +44,12 @@ public class UserInfoControllelr {
 	public Msg getUserpro(@RequestHeader("username")String userName){
 		return userInfoService.getUserpro(userName);
 	}
+
+	@GetMapping("getUserByName/{userName}")
+	public UserInfo getUserInfoByName(@PathVariable("userName")String userName){
+		return userInfoService.getUserInfoByName(userName);
+	}
+
 	@GetMapping("/getUserInfoByNickNAme/{nickName}")
 	public Msg getUserByNickName(@PathVariable("nickName") String nickName) {
 		return userInfoService.getUserByNickName(nickName);

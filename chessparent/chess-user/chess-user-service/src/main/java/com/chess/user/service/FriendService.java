@@ -20,4 +20,6 @@ public interface FriendService {
     List<Friend> getFriendsByLine(String userName, Integer onLine);
 
     void addFriend(FriendLaunchMessage friendLaunchMessage);
+
+    Msg deleteFriend(String userName, String friendName);
 }

@@ -7,9 +7,11 @@ import com.chess.common.enumcodes.GameMessage;
 import com.chess.common.exception.ChessException;
 import com.chess.common.util.Msg;
 import com.chess.common.vo.CheseIndex;
+import com.chess.email.client.GameListClient;
 import com.chess.email.matchplay.constant.MatchConstant;
 import com.chess.email.matchplay.task.MyRunable;
 import com.chess.email.matchplay.vo.MatchGameInfo;
+import com.chess.rankhis.enty.GameList;
 import org.apache.tomcat.util.bcel.Const;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,9 @@ public class MatchService {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Autowired
+    private GameListClient gameListClient;
+
     public Msg confirmMatch(String userName){
         //查询是否存在对局
         //判断另一个玩家是否已经确定且为超时
@@ -59,7 +64,7 @@ public class MatchService {
         }
         if(MatchConstant.AGREE_MATCH.equals(matchGameInfoOther.getUserNameState())){
             //另一个玩家以同意,提交对局任务
-            initGameSec.submit(new MyRunable(redisTemplate,amqpTemplate,matchGameInfo.getMatchType(),userName,otherUserName));
+            initGameSec.submit(new MyRunable(redisTemplate,amqpTemplate,matchGameInfo.getMatchType(),userName,otherUserName, gameListClient));
             return Msg.success();
         }
         //同意对局
@@ -119,7 +124,7 @@ public class MatchService {
         }
         String oppUserName = (String) state;
         //初始化对局
-        initGameSec.submit(new MyRunable(redisTemplate,amqpTemplate,GameMessage.FriendsGame.getMessageCode(),userName,oppUserName));
+        initGameSec.submit(new MyRunable(redisTemplate,amqpTemplate,GameMessage.FriendsGame.getMessageCode(),userName,oppUserName, gameListClient));
         return Msg.success();
     }
 

@@ -1,5 +1,6 @@
 package com.chess.common.util;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -10,7 +11,7 @@ import com.chess.common.enumcodes.UserCode;
 import lombok.Data;
 
 @Data
-public class Msg {
+public class Msg implements Serializable {
 
 	//状态码
 	private int code;

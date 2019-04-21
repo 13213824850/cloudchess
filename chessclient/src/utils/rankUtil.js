@@ -17,15 +17,19 @@ export default {
     let colorValue
     if (rg === 1) {
       str = '青铜'
-      colorValue = ''
+      colorValue = '#615980'
     } else if (rg === 2) {
       str = '黄金'
+      colorValue = '#835D16'
     } else if (rg === 3) {
       str = '铂金'
+      colorValue = '#527B97'
     } else if (rg === 4) {
       str = '钻石'
+      colorValue = '#9E9DAF'
     } else {
       str = '大师'
+      colorValue = '#8A733F'
     }
     if (rgs === 1) {
       str += 'I'
@@ -40,7 +44,9 @@ export default {
     if (countPlayValue === 0) {
       winRateValue = 0
     } else {
-      winRateValue = (rank.winCount / countPlayValue) * 100
+      winRateValue = (rank.winCount / countPlayValue) + ''
+      winRateValue = winRateValue.substring(0, 4) * 100
+
     }
     let respondMsg = {
       'stage': str,
@@ -50,10 +56,12 @@ export default {
       'nickName': rank.nickName,
       'windCount': rank.winCount,
       'failCount': rank.transportCount,
-      'code': 200
+      'code': 200,
+      'colorValue': colorValue
     }
     return respondMsg
   },
+
 
 
 }

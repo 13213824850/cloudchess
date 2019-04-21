@@ -17,6 +17,7 @@ public class RankServiceimpl implements RankService {
     private RankMapper rankMapper;
     @Autowired
     private RankUtil rankUtil;
+
     @Override
     public Double getRankGrade(String userName) {
         Rank rank = getRank(userName);
@@ -36,13 +37,25 @@ public class RankServiceimpl implements RankService {
         Rank rank = new Rank();
         rank.setUserName(userName);
         Rank rankInfo = rankMapper.selectOne(rank);
-        if(rankInfo == null){
+        if (rankInfo == null) {
             //添加rank性息
             addRank(rank, userName);
             rankInfo = rank;
         }
         return rankInfo;
     }
+
+    @Override
+    public void updateRankPlayCount(String userName, Boolean result) {
+        Rank rank = getRank(userName);
+        if (result) {
+            rank.setWinCount(rank.getWinCount() + 1);
+        } else {
+            rank.setTransportCount(rank.getTransportCount() + 1);
+        }
+        rankMapper.updateByPrimaryKey(rank);
+    }
+
 
     //初始化Rank
     public void addRank(Rank rank,String userName) {
