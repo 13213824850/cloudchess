@@ -38,7 +38,7 @@ public class WsHandler extends TextWebSocketHandler {
     private static int onlineCount = 0;
     public static Map<String, String> sessionIds = new ConcurrentHashMap<>();
     public static Map<String, WebSocketSession> sessionMap = new ConcurrentHashMap<>();
-    public static Map<String, Double> matchInfos = new ConcurrentHashMap<>();
+    public static Map<String, MatchInfo> matchInfos = new ConcurrentHashMap<>();
 
     @Resource
     private RedisTemplate<Object, Object> redisTemplate;
@@ -98,7 +98,7 @@ public class WsHandler extends TextWebSocketHandler {
         int messageCode = cheseIndex.getMessageCode();
         String userName = sessionIds.get(session.getId());
         if(messageCode == GameMessage.MatchGame.getMessageCode()){
-            matchGame(userName, session);
+            matchGame(userName, session,Constant.MATCH_GAME_KEY);
             playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_MATCH);
             return;
         }else if(messageCode == GameMessage.RemoveMatch.getMessageCode()){
@@ -111,7 +111,7 @@ public class WsHandler extends TextWebSocketHandler {
             playService.cheseMove(session,cheseIndex);
         } else if (messageCode == GameMessage.RankGame.getMessageCode()) {
             //rank对局
-            rankGame(userName, session);
+            matchGame(userName, session,Constant.RANK_GAME_KEY);
             playService.updateFriendShow(sessionIds.get(session.getId()),Constant.LINE_MATCH);
         }else if(messageCode == GameMessage.SEND_ALL_MESSAGE.getMessageCode()){
             playService.sendMessageToAll(cheseIndex, userName);
@@ -123,26 +123,15 @@ public class WsHandler extends TextWebSocketHandler {
 
     }
 
-    //排位
-    private void rankGame(String userName,WebSocketSession session){
-        //获取rank分值
-        double rankGrade = playService.getRankScore(userName);
-        matchInfos.put(userName,rankGrade);
-        MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
-        redisTemplate.boundZSetOps(Constant.RANK_GAME_KEY).add(matchInfo,rankGrade);
-        CheseIndex cheseIndex = new CheseIndex();
-        cheseIndex.setMessage(GameMessage.MatchIng.getMessage());
-        cheseIndex.setMessageCode(GameMessage.MatchIng.getMessageCode());
-        sendMessage(session,cheseIndex);
-    }
+
     //匹配
-    private void matchGame(String userName,WebSocketSession session){
+    private void matchGame(String userName,WebSocketSession session,String type){
         //匹配对局
         //获取rank分值
         double rankGrade = playService.getRankScore(userName);
-        matchInfos.put(userName,rankGrade);
         MatchInfo matchInfo = new MatchInfo(userName, rankGrade, new Date());
-        redisTemplate.boundZSetOps(Constant.MATCH_GAME_KEY).add(matchInfo,rankGrade);
+        matchInfos.put(userName,matchInfo);
+        redisTemplate.boundZSetOps(type).add(matchInfo,rankGrade);
         CheseIndex cheseIndex = new CheseIndex();
         cheseIndex.setMessage(GameMessage.MatchIng.getMessage());
         cheseIndex.setMessageCode(GameMessage.MatchIng.getMessageCode());

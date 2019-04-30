@@ -1,5 +1,6 @@
 package com.chess.email;
 
+import com.chess.email.matchplay.init.EndApplicationStart;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

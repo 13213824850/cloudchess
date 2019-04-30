@@ -10,7 +10,7 @@
           <div class="col-sm-6">
             <span class="btn btn-info  bt-lg" @click="choseType">
             <span v-if="matchTime===0">开始匹配</span>
-            <span v-else>已匹配{{matchTime}}秒</span>
+              <span v-if="matchTime > 0">已匹配{{matchTime}}秒 <span class="glyphicon glyphicon-remove"></span></span>
             </span>
             <span :class="remove_Match"></span>
           </div>
@@ -18,32 +18,30 @@
         <!--显示对战列表 -->
         <div class="row">
 
-          <div class="row" >
+          <div class="row">
             <h4>
-            <div class="row">
-              <table class="table table-hover"><thead>
-              <tr>
-                <td>#</td>
-                <td>对局双方</td>
-                <td>类型</td>
-                <td>时间</td>
-              </tr>
-              </thead></table>
-            </div>
-            <div class="row" style="overflow-y: auto;height: 400px">
+              <div class="row" style="overflow-y: auto;height: 400px">
                 <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <td>#</td>
+                    <td>对局双方</td>
+                    <td>类型</td>
+                  </tr>
+                  </thead>
+
                   <!--数据-->
                   <tbody>
                   <tr v-for="(gameList,index) in gameLists" class="active">
                     <td>{{index+1}}</td>
-                    <td>{{gameList.redNickName + 'vs' + gameList.blackNickName}}</td>
+                    <td>{{gameList.redNickName}} <span style="color: red;font-family: 'Roboto', sans-serif">VS</span>{{gameList.blackNickName}}</td>
                     <td>{{getType(gameList.matchType)}}</td>
                     <td>{{formateTime(gameList.created)}}</td>
                     <td><a class="btn btn-info" @click="watchPlay(gameList.checkBoardInfoId)">观战</a></td>
                   </tr>
                   </tbody>
                 </table>
-            </div>
+              </div>
             </h4>
           </div>
 
@@ -79,14 +77,16 @@
             </li>
           </ul>
 
-          <div id="showMessage" style="overflow-y: auto; height: 400px; background-color: #F7F7F7;word-break:break-all">
+          <div id="showMessage"
+               style="overflow-y: auto; overflow-x:hidden; height: 400px;word-break:break-all;border: #1a1a1a solid 1px;">
             <!--大厅聊天-->
-            <div class="row" v-if="messageTag" v-for="m in showAllMessages">
-              <span :style="{color: m.nickName === userInfo.nickName ? 'blue' : ''}">{{m.nickName + ':  ' + m.message}}</span>
+            <div class="row" v-if="messageTag" v-for="m in showAllMessages" style="margin-left: 2px;">
+              <span
+                :style="{color: m.nickName === userInfo.nickName ? 'blue' : ''}">{{m.nickName + ':  ' + m.message}}</span>
 
             </div>
             <!--其他聊天-->
-            <div v-if="!messageTag " v-for="msg in messageUser.msg">
+            <div v-if="!messageTag " v-for="msg in messageUser.msg" style="margin-left: 2px;">
               <span v-if="msg.message.length > 0">{{msg.nickName + ':   ' + msg.message}}</span>
             </div>
           </div>
@@ -230,10 +230,12 @@
   import {mapActions, mapState} from 'vuex'
   import moment from 'moment'
   import AlertTip from '../../components/AlterTip/AlterTip'
+
   export default {
     data() {
       return {
-        alertShow:false,
+        matchButton: false,
+        alertShow: false,
         alertText: '',
         gameLists: [], //对战列表显示
         path: reqWs,
@@ -259,13 +261,15 @@
         messageSingleCount: 0, //当前窗口未激活消息未读个数
         messageUser: {},//怎在聊天的对象
         messageTag: true, //显示怎在聊天的那个
+        timeMatchSureID: null, //确认祭祀id
+        matchSuccessSure: false,
       }
     },
     mounted() {
       // 初始化
       this.init()
     },
-    components:{
+    components: {
       AlertTip
     },
     computed: {
@@ -283,17 +287,29 @@
         moment(time).locale('zh_cn').toNow()
       },
       //关闭弹框
-     async closeTip(){
-        this.alertShow = false
-        this.alertText = ''
+      async closeTip() {
+        //this.alertShow = false
         const result = await reqConfirmMatch()
-        if(result.code !== 200){
+        if (result.code !== 200) {
           this.alertShow = true
           this.alertText = result.message
         }
+        this.alertText = '已确认等待中'
+        this.matchSuccessSure = true
       },
       //开始匹配
       choseType() {
+        if(this.matchButton){
+          //取消匹配
+          let msg = {
+            'messageCode':106
+          }
+          this.send(msg)
+          this.matchTime = 0
+          clearInterval(this.intervalId)
+          this.matchButton = false
+          return
+        }
         if (this.time > 0) {
           return
         }
@@ -301,6 +317,7 @@
       },
       starMatch(matchType) {
         //如果选择好友约战则列出可供选择的好友
+
         if (matchType === 104) {
           alert('请点击好友列表中邀请')
         } else {
@@ -309,6 +326,7 @@
           this.send(msg)
         }
         $('#choseTypeModal').modal('hide')
+        this.matchButton = true
         //计时
         this.intervalId = setInterval(() => {
           this.matchTime++
@@ -434,21 +452,21 @@
           return
         }
         //请i去观战成功
-        if(code === 603){
+        if (code === 603) {
           this.updateCheseIndex(cheseIndex)
           this.$router.push('/watchPlay')
         }
         //添加gameList
-        if(code === 604){
+        if (code === 604) {
           this.gameLists.add(cheseIndex.map.gameList)
           return
         }
         //删除
-        if(code === 605){
+        if (code === 605) {
           let index = this.gameLists.findIndex(g, g.checkBoardInfoId)
-          this.gameLists.splice(index,1)
+          this.gameLists.splice(index, 1)
         }
-        if(code === 607){
+        if (code === 607) {
           this.updateCheseIndex(cheseIndex)
         }
         //好友更新
@@ -533,14 +551,18 @@
       matchSuccess(time) {
         //匹配成功开始对局
         this.alertShow = true
-        let id = setInterval(() => {
+        this.timeMatchSureID = setInterval(() => {
           time--
-          this.alertText = '剩余'+time+'秒'
-          if(time === 0){
-            this.alertText=''
+          if(!this.matchSuccessSure){
+            this.alertText = '剩余' + time + '秒'
+          }
+          if (time === 0) {
+            this.alertText = ''
             this.alertShow = false
-            clearInterval(id)
-
+            clearInterval(this.timeMatchSureID)
+            clearInterval(this.intervalId)
+            this.matchButton = false
+            this.matchTime = 0
           }
         }, 1000)
         /*this.alertText = ''
@@ -878,7 +900,6 @@
   a {
     padding: 2px 15px;
 
-  / / width: 120 px;
     height: 28px;
     line-height: 28px;
     text-align: center;

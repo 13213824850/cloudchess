@@ -8,7 +8,7 @@
       <!--导航栏-->
       <div class="col-sm-3">
         <h4>
-          <div class="list-group">
+          <div class="list-group" style="background: none">
             <router-link to="/index" type="button" class="list-group-item">返回首页</router-link>
             <router-link to="/user/userInfo" type="button" class="list-group-item">个人信息</router-link>
             <router-link to="/user/historyPlay" type="button" class="list-group-item">历史记录</router-link>
@@ -20,7 +20,7 @@
 
 
       <div class="col-sm-9 " style="overflow-y: auto; overflow-x: hidden;
-      height: 500px; background-color: #F7F7F7;word-break:break-all">
+      height: 500px; word-break:break-all">
         <router-view></router-view>
       </div>
 

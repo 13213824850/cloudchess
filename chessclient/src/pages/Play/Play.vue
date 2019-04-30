@@ -1,8 +1,9 @@
 <template>
 
   <div class="row" v-if="this.mySocket != null && cheses != null && cheses.length != 0">
+    <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"/>
     <!--对局棋盘-->
-    <div class=" col-sm-8" id="chess" ref="qipan">
+    <div class="col-sm-offset-2 col-sm-7" id="chess" ref="qipan">
       <!--画个棋盘加visibility属性是为其咱个地方-->
       <div class="row" v-for="x in 10" style="height: 56px" v-if="!isCodeZ">
            <span :id="(y-1)+':' + (x-1)" v-for="y in 9" @click="moveChese($event)">
@@ -19,36 +20,55 @@
     </div>
 
     <!--消息-->
-    <div class="col-sm-4">
-      <!--开局时间-->
-      <div class="row">对局时间：{{playIngTime + ''}}</div>
-      <!--剩余时间-->
-      <div class="row">剩余时间 {{overPlusTime}}秒</div>
-      <!--状态-->
-      <div class="row">状态： {{gameState}}</div>
+    <div class="col-sm-2" style="margin-top: 1%; ">
+      <h3 style="text-align: center">对局信息</h3><br>
+      <h4>
+        <!--开局时间-->
+        <div class="row">对局时间：{{playIngTime + ''}}</div>
+        <br>
+        <!--剩余时间-->
+        <div class="row" style="color: red">剩余时间 {{overPlusTime}}秒</div>
+        <br>
+        <!--状态-->
+        <div class="row">状态： {{gameState}}</div>
+        <br>
+
+      </h4>
 
 
-      <div class="row">
-        双方信息：
+      <div class="row" style="margin-left: 10px">
+        <h3 style="text-align: center">双方信息：</h3><br>
+        <h4>
         <div class="row">
           <div class="row">
             <!--sex-->
             <span class="glyphicon glyphicon-user" :style="{color: userInfo.sex === 0 ? 'black' : 'red'}"></span>
             <span>{{rank.nickName}}</span>
-            <span>{{rank.stage }}<span>{{rank.star}}</span></span>
+            <span>{{rank.stage }}
+             <span v-for="count in rank.star">
+             <span class="glyphicon glyphicon-star" :id="count"></span>
+            </span>
+            </span>
           </div>
-          <h3>vs</h3>
+          <strong  style="font-family: 'Roboto Slab', serif;font-size: 30px;margin-left: 20%">vs</strong>
           <div class="row">
             <!--sex-->
             <span class="glyphicon glyphicon-user" :style="{color: userInfo.sex === 0 ? 'black' : 'red'}"></span>
             <span>{{otherRank.nickName}}</span>
-            <span>{{otherRank.stage }}<span>{{otherRank.star}}</span></span>
+            <span>{{otherRank.stage }}
+             <span v-for="count in otherRank.star">
+             <span class="glyphicon glyphicon-star" :id="count"></span>
+            </span>
+            </span>
           </div>
           <div class="row"></div>
         </div>
+        </h4>
       </div>
     </div>
+
   </div>
+
   <div class="row" v-else style="align-content:center">
     <center style="margin-top: 200px;">
       <h2>
@@ -64,10 +84,12 @@
   import {mapState} from 'vuex'
   import moment from 'moment'
   import rankUtil from '../../utils/rankUtil'
-
+  import AlertTip from '../../components/AlterTip/AlterTip'
   export default {
     data() {
       return {
+        alertText:'',
+        alertShow:false,
         baseImageUrl: 'http://localhost:8080/static/images/',
         path: reqPlayWs,
         touchCode: false,
@@ -96,7 +118,15 @@
       ...mapState(['cheseIndex', 'userInfo', 'mySocket']),
 
     },
+    components: {
+      AlertTip
+    },
     methods: {
+      closeTip(){
+        this.alertText = ''
+        this.alertShow = false
+        this.$router.replace('/index')
+      },
       //移动棋子
       moveChese(event) {
         //判断超时和轮到我方没
@@ -208,7 +238,7 @@
         this.startTime = this.cheseIndex.map.startTime
         this.overPlusTime = this.cheseIndex.ramainTime
         this.showOverPlushTime()
-        this.showGameState(this.cheseIndex.gameState,this.cheseIndex.turnMe)
+        this.showGameState(this.cheseIndex.gameState, this.cheseIndex.turnMe)
         this.showStartGameTime()
         //显示双方信息
         this.showRanks()
@@ -217,7 +247,9 @@
       async showRanks() {
         let result = await reqGetRank(this.userName)
         this.rank = rankUtil.getRankInfo(result)
-        let oppresult = await reqGetRank(this.cheseIndex.oppUserName)
+        let oppuserName = this.cheseIndex.map.checkerBoardInfo.oppUserName
+        let oppresult = await reqGetRank(oppuserName)
+
         this.otherRank = rankUtil.getRankInfo(oppresult)
       },
       //计算开具多久了
@@ -244,7 +276,8 @@
         console.log('发送' + value)
         this.mySocket.send(value)
       },
-      showGameState(gamestate,turnMe){
+      showGameState(gamestate, turnMe) {
+
         if (turnMe === this.userName) {
           this.turnMe = true
           this.gameState = '轮到我方'
@@ -252,15 +285,22 @@
           this.turnMe = false
           this.gameState = '轮到敌方'
         }
-        if(gamestate === 400){
+        if (gamestate === 400) {
           return
         }
         if (gamestate === 401 && this.isCodeZ) {
-          this.gameState = '我方胜利'
+          this.alertShow = true
+          this.gameState = '胜利'
+          this.alertText = '胜利'
         } else if (gamestate === 402 && !this.isCodeZ) {
-          this.gameState = '我方胜利'
+          this.gameState = '胜利'
+          this.alertText = '胜利'
+          this.alertShow = true
+
         } else {
-          this.gameState = '失败'
+          this.alertShow = true
+          this.alertText = '游戏结束'
+          this.gameState = '游戏结束'
         }
       }
 
@@ -277,9 +317,11 @@
         this.$set(this.cheses[codeIndex.startX], codeIndex.startY, 0)
         this.cheses[codeIndex.startX][codeIndex.startY] = 0
         this.cheses[codeIndex.endX][codeIndex.endY] = codeIndex.code
-
+        //更改手中无棋子
+        this.touchCode = false
+        this.codeIndex = []
         //查看游戏是否结束
-        this.showGameState(cheseIndex.gameState,cheseIndex.turnMe)
+        this.showGameState(cheseIndex.gameState, cheseIndex.turnMe)
       }
     },
   }

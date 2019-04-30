@@ -46,7 +46,7 @@ import java.util.stream.Collectors;
 public class PlayService {
 
     @Resource
-    private RedisTemplate<String,Object> redisTemplate;
+    private RedisTemplate<String, Object> redisTemplate;
     @Autowired
     private AmqpTemplate amqpTemplate;
     @Autowired
@@ -59,14 +59,13 @@ public class PlayService {
     private GameListClient gameListClient;
 
     /**
+     * @param checkerBoardInfo 棋盘信息
+     * @param session          当前session userName 当前用户名
      * @Auther:huang yuan li
      * @Description:断线重连
      * @date: Create in ${TIME} ${DATE}
-     * @param checkerBoardInfo 棋盘信息
-     *  @param session  当前session userName 当前用户名
-     *
      */
-    public void againConnectMatch(CheckerBoardInfo checkerBoardInfo, WebSocketSession session,String userName){
+    public void againConnectMatch(CheckerBoardInfo checkerBoardInfo, WebSocketSession session, String userName) {
         //获取棋盘信息
         int[][] cheses = (int[][]) redisTemplate.opsForValue()
                 .get(Constant.CHECKERBOARD_REDIS_ID + checkerBoardInfo.getCheckerBoardID());
@@ -75,7 +74,7 @@ public class PlayService {
         cheseIndex.setMessageCode(GameMessage.InitGame.getMessageCode());
         String turnMe = (String) redisTemplate.opsForValue()
                 .get("turnMe:" + checkerBoardInfo.getCheckerBoardID());
-        cheseIndex.add("checkerBoardInfo", checkerBoardInfo).add("cheses", cheses).add("startTime",checkerBoardInfo.getDate());
+        cheseIndex.add("checkerBoardInfo", checkerBoardInfo).add("cheses", cheses).add("startTime", checkerBoardInfo.getDate());
         cheseIndex.setTurnMe(turnMe);
         cheseIndex.setGameState(checkerBoardInfo.getGameState());
         cheseIndex.setRedUserName(checkerBoardInfo.getCode() == CheseCode.Red.getCode() ?
@@ -83,13 +82,13 @@ public class PlayService {
         Instant instant = (Instant) redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
         //获取剩余时间
         int time = 60;
-        if(instant != null){
-           time = (int)(instant.getEpochSecond() - Instant.now().getEpochSecond());
+        if (instant != null) {
+            time = (int) (instant.getEpochSecond() - Instant.now().getEpochSecond());
         }
         cheseIndex.setRamainTime(time);
-        sendMessage(session,cheseIndex);
+        sendMessage(session, cheseIndex);
         //设置用户状态
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName,2);
+        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName, 2);
         log.info("建立连接 开始对局棋盘{}", JSON.toJSONString(cheseIndex));
     }
 
@@ -98,8 +97,8 @@ public class PlayService {
 
         String userName = WsHandler.sessionIds.get(session.getId());
         //检查是否超时
-        Instant time = (Instant)redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
-        if(time == null){
+        Instant time = (Instant) redisTemplate.opsForValue().get(Constant.SINGLE_OVER_TIME + userName);
+        if (time == null) {
             return;
         }
         // 获取棋盘
@@ -170,15 +169,13 @@ public class PlayService {
             gameRecord.setOtherUserName(checkerboardinfo.getOppUserName());
             gameRecord.setResult(true);
             int playTime = new Date().getMinutes() - checkerboardinfo.getDate().getMinutes();
-            gameRecord.setPlayTime(playTime+"分钟");
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    historyClient.addGameRecord(gameRecord);
-                    gameListClient.deleteGameList(checkerboardinfo.getCheckerBoardID());
-                }
-            }).start();
+            gameRecord.setPlayTime(playTime + "分钟");
+            historyClient.addGameRecord(gameRecord);
             //删除对战记录
+            gameListClient.deleteGameList(checkerboardinfo.getCheckerBoardID());
+            //更改状态
+            updateFriendShow(userName, Constant.LINE_ON);
+            updateFriendShow(checkerboardinfo.getOppUserName(), Constant.LINE_ON);
         } else {
             cheseIndex.setGameState(GameMessage.PlayIng.getMessageCode());
             redisTemplate.opsForValue().set("turnMe:" + checkerboardinfo.getCheckerBoardID(), turnMe);
@@ -196,9 +193,10 @@ public class PlayService {
         sendMessage(session, cheseIndex);
         cheseIndex.setMessageCode(GameMessage.WATCH_PLAY_MOVE.getMessageCode());
         cheseIndex.setCheckBoardInfoId(checkerboardinfo.getCheckerBoardID());
-        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE,MQConstant.CHESEINDEX_KEY,cheseIndex);
+        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE, MQConstant.CHESEINDEX_KEY, cheseIndex);
 
     }
+
     //检查棋子移动规则
     private String checkRule(CheckerBoardInfo checkerboardinfo, CheseIndex cheseIndex) {
         CodeIndex codeIndex = cheseIndex.getCodeIndex();
@@ -271,13 +269,13 @@ public class PlayService {
     }
 
     //获取rank分值
-    public double getRankScore(String userName){
-       return rankClient.getRankGrade(userName);
+    public double getRankScore(String userName) {
+        return rankClient.getRankGrade(userName);
     }
 
     //更新用户在线信息和好友列表
-    public void updateFriendShow(String userName, int onLine){
-        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE+userName, onLine);
+    public void updateFriendShow(String userName, int onLine) {
+        redisTemplate.opsForValue().set(Constant.KEEP_ALIVE + userName, onLine);
         //更新信息
         friendClient.updateFriendLine(userName, onLine);
         //获取在线好友
@@ -295,23 +293,23 @@ public class PlayService {
     //向大厅所有人发送消息sendMessageToAll
     public void sendMessageToAll(CheseIndex cheseIndex, String userName) {
         String message = cheseIndex.getMessage();
-        if(message.length() >= 100 || message.trim().length() == 0){
+        if (message.length() >= 100 || message.trim().length() == 0) {
             return;
         }
-        sendMessage(WsHandler.sessionMap.get(userName),cheseIndex);
+        sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
         Map<String, WebSocketSession> sessionMap = WsHandler.sessionMap;
-        for(String str : sessionMap.keySet()){
-            if(str.equals(userName)){
+        for (String str : sessionMap.keySet()) {
+            if (str.equals(userName)) {
                 continue;
             }
             Object o = redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + str);
-            if(o == null){
+            if (o == null) {
                 continue;
             }
             int state = (int) o;
             //匹配中或者在线则发送消息
-            if(state == Constant.LINE_ON || state == Constant.LINE_MATCH){
-                sendMessage(sessionMap.get(str),cheseIndex);
+            if (state == Constant.LINE_ON || state == Constant.LINE_MATCH) {
+                sendMessage(sessionMap.get(str), cheseIndex);
             }
         }
         //通过mq向其他服务器发送消息 暂未写
@@ -319,7 +317,7 @@ public class PlayService {
 
     //向单个人发送消息
     public void sendMessageToSingle(CheseIndex cheseIndex, String userName) {
-        if(cheseIndex.getMessage().length() > 100 || cheseIndex.getMessage().trim().length() == 0){
+        if (cheseIndex.getMessage().length() > 100 || cheseIndex.getMessage().trim().length() == 0) {
             return;
         }
         //接收方
@@ -330,7 +328,7 @@ public class PlayService {
     }
 
     /**
-     * @param userName 用户账号
+     * @param userName         用户账号
      * @param checkBoardInfoId 棋盘id
      * @Description: 用户观战： 1、查询企盼信息 2、添加到观战集合、3、发送消息
      */
@@ -338,7 +336,7 @@ public class PlayService {
         Object cheses = redisTemplate.opsForValue()
                 .get(Constant.CHECKERBOARD_REDIS_ID + checkBoardInfoId);
         CheseIndex cheseIndex = new CheseIndex();
-        if(cheses == null){
+        if (cheses == null) {
             cheseIndex.setMessageCode(GameMessage.WATCH_NO_FIND.getMessageCode());
             cheseIndex.setMessage(GameMessage.WATCH_NO_FIND.getMessage());
             sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
@@ -347,7 +345,7 @@ public class PlayService {
         //添加观战集合
         redisTemplate.boundSetOps(checkBoardInfoId).add(userName);
         Object o = redisTemplate.opsForValue().get(checkBoardInfoId);
-        if(o == null){
+        if (o == null) {
             return;
         }
         String str = (String) o;
@@ -355,8 +353,8 @@ public class PlayService {
         cheseIndex.setUserName(split[0]);
         cheseIndex.setOppUserName(split[1]);
         //强制类型转化
-        int [][] chese = (int[][]) cheses;
-        cheseIndex.add("cheses",chese);
+        int[][] chese = (int[][]) cheses;
+        cheseIndex.add("cheses", chese);
         cheseIndex.setMessageCode(GameMessage.WATCH_PLAY.getMessageCode());
         sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
     }

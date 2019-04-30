@@ -52,86 +52,90 @@ public class ChessMessage {
         String userName = cheseIndex.getUserName();
         String userNameOpp = cheseIndex.getOppUserName();
         int code = cheseIndex.getMessageCode();
-        if (code == GameMessage.InitGame.getMessageCode() || code == GameMessage.ConnecGame.getMessageCode()) {
-            //初始化
-            log.info("初始化");
-            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
-            sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
-            return;
-        }
-        if (code == GameMessage.ChesesMove.getMessageCode()) {
-            log.info("移动棋子");
-            sendMessage(WsHandler.sessionMap.get(cheseIndex.getTurnMe()), cheseIndex);
-            return;
-        }
-        if (code == GameMessage.AUTOCHESEMOVE.getMessageCode()) {
-            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
-            sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
-            return;
-        }
-        if (code == GameMessage.UPDATE_SHOW_FRIENDS.getMessageCode()) {
-            List<String> friends = (List<String>) cheseIndex.getMap().get("friends");
-            int onLine = (int) cheseIndex.getMap().get("onLine");
-            CheseIndex sendCheseIndex = new CheseIndex();
-            sendCheseIndex.setMessageCode(cheseIndex.getMessageCode());
-            sendCheseIndex.setMessage(cheseIndex.getMessage());
-            sendCheseIndex.add("onLine", onLine).add("friend", userName);
-            //发送好友在线信息变更消息
-            for (int i = 0; i < friends.size(); i++) {
-                sendMessage(WsHandler.sessionMap.get(friends.get(i)), sendCheseIndex);
-            }
-            return;
-        }
-        //判断是否是添加好友请求
-        if (code == GameMessage.RECEIVE_LAUNCH_MESSAGE.getMessageCode()) {
-            sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
-            return;
-        }
-        //接受好友对战请求
-        if (code == GameMessage.FriendsGame.getMessageCode()) {
-            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
-            return;
-        }
-
-        //sh删除好友消息
-        if (code == GameMessage.DELETE_SINGLE_FRIEND.getMessageCode()) {
-            sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
-            return;
-        }
-        //好友添加成功 更新好友
-        if (code == GameMessage.FRIEND_ADD_SUCCESS.getMessageCode()) {
-            sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
-            return;
-        }
-        //发送更新对局列表
-        if (code == GameMessage.ADD_GAME_LIST.getMessageCode() || code == GameMessage.DELETE_GAME_LIST.getMessageCode()) {
-            Map<String, WebSocketSession> sessionMap = WsHandler.sessionMap;
-            for (String name : sessionMap.keySet()) {
-                Object o = redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + name);
-                if (o != null && (int) o == 1) {
-                    sendMessage(sessionMap.get(name), cheseIndex);
-                }
-            }
-            return;
-        }
-        if (code == GameMessage.WATCH_PLAY_MOVE.getMessageCode()) {
-            String id = cheseIndex.getCheckBoardInfoId();
-            log.info("{}redis:", redisTemplate);
-            Set members = redisTemplate.boundSetOps(id).members();
-            if (members == null || members.size() == 0) {
+        try {
+            if (code == GameMessage.InitGame.getMessageCode() || code == GameMessage.ConnecGame.getMessageCode()) {
+                //初始化
+                log.info("初始化");
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
                 return;
             }
-            Iterator iterator = members.iterator();
-            while ( iterator.hasNext()) {
-                String next = (String) iterator.next();
-                WebSocketSession session = WsHandler.sessionMap.get(next);
-                if(session == null){
-                    redisTemplate.boundSetOps(id).remove(next);
-                    continue;
-                }
-                sendMessage(session,cheseIndex);
+            if (code == GameMessage.ChesesMove.getMessageCode()) {
+                log.info("移动棋子");
+                sendMessage(WsHandler.sessionMap.get(cheseIndex.getTurnMe()), cheseIndex);
+                return;
             }
-            return;
+            if (code == GameMessage.AUTOCHESEMOVE.getMessageCode()) {
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+            if (code == GameMessage.UPDATE_SHOW_FRIENDS.getMessageCode()) {
+                List<String> friends = (List<String>) cheseIndex.getMap().get("friends");
+                int onLine = (int) cheseIndex.getMap().get("onLine");
+                CheseIndex sendCheseIndex = new CheseIndex();
+                sendCheseIndex.setMessageCode(cheseIndex.getMessageCode());
+                sendCheseIndex.setMessage(cheseIndex.getMessage());
+                sendCheseIndex.add("onLine", onLine).add("friend", userName);
+                //发送好友在线信息变更消息
+                for (int i = 0; i < friends.size(); i++) {
+                    sendMessage(WsHandler.sessionMap.get(friends.get(i)), sendCheseIndex);
+                }
+                return;
+            }
+            //判断是否是添加好友请求
+            if (code == GameMessage.RECEIVE_LAUNCH_MESSAGE.getMessageCode()) {
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+            //接受好友对战请求
+            if (code == GameMessage.FriendsGame.getMessageCode()) {
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                return;
+            }
+
+            //sh删除好友消息
+            if (code == GameMessage.DELETE_SINGLE_FRIEND.getMessageCode()) {
+                sendMessage(WsHandler.sessionMap.get(userNameOpp), cheseIndex);
+                return;
+            }
+            //好友添加成功 更新好友
+            if (code == GameMessage.FRIEND_ADD_SUCCESS.getMessageCode()) {
+                sendMessage(WsHandler.sessionMap.get(userName), cheseIndex);
+                return;
+            }
+            //发送更新对局列表
+            if (code == GameMessage.ADD_GAME_LIST.getMessageCode() || code == GameMessage.DELETE_GAME_LIST.getMessageCode()) {
+                Map<String, WebSocketSession> sessionMap = WsHandler.sessionMap;
+                for (String name : sessionMap.keySet()) {
+                    Object o = redisTemplate.opsForValue().get(Constant.KEEP_ALIVE + name);
+                    if (o != null && (int) o == 1) {
+                        sendMessage(sessionMap.get(name), cheseIndex);
+                    }
+                }
+                return;
+            }
+            if (code == GameMessage.WATCH_PLAY_MOVE.getMessageCode()) {
+                String id = cheseIndex.getCheckBoardInfoId();
+                log.info("{}redis:", redisTemplate);
+                Set members = redisTemplate.boundSetOps(id).members();
+                if (members == null || members.size() == 0) {
+                    return;
+                }
+                Iterator iterator = members.iterator();
+                while (iterator.hasNext()) {
+                    String next = (String) iterator.next();
+                    WebSocketSession session = WsHandler.sessionMap.get(next);
+                    if (session == null) {
+                        redisTemplate.boundSetOps(id).remove(next);
+                        continue;
+                    }
+                    sendMessage(session, cheseIndex);
+                }
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
         return;
     }

@@ -49,15 +49,19 @@ public class EndApplicationStart implements CommandLineRunner {
         sec.scheduleWithFixedDelay(new Runnable() {
             @Override
             public void run() {
-                log.info("开始匹配");
-                matchProcess(GameMessage.MatchGame.getMessageCode());
-                log.info("开始rank");
-                matchProcess(GameMessage.RankGame.getMessageCode());
-                log.info("本轮结匹配结束");
-                //显示列表
-                //showGameList();
-                //检查超时
-                checkOverTime();
+               try{
+                   log.info("开始匹配");
+                   matchProcess(GameMessage.MatchGame.getMessageCode());
+                   log.info("开始rank");
+                   matchProcess(GameMessage.RankGame.getMessageCode());
+                   log.info("本轮结匹配结束");
+                   //显示列表
+                   //showGameList();
+                   //检查超时
+                   checkOverTime();
+               }catch (Exception e){
+                  log.error("异常：+" + e);
+               }
             }
         }, 1, match_Play_againTime, TimeUnit.SECONDS);
     }

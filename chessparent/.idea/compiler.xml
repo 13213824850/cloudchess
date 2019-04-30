@@ -6,18 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="chess-zpkin" />
-        <module name="chess-auth-service" />
-        <module name="chess-rank-his-service" />
-        <module name="chess-user-service" />
-        <module name="chess-registery" />
-        <module name="chess-user-interface" />
         <module name="chess-paly" />
+        <module name="chess-email" />
+        <module name="chess-gateway" />
+        <module name="chess-registery" />
+        <module name="chess-zpkin" />
         <module name="chess-auth-common" />
+        <module name="chess-rank-his-service" />
+        <module name="chess-user-interface" />
         <module name="chess-rank-his-interface" />
         <module name="chess-common" />
-        <module name="chess-gateway" />
-        <module name="chess-email" />
+        <module name="chess-auth-service" />
+        <module name="chess-user-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
