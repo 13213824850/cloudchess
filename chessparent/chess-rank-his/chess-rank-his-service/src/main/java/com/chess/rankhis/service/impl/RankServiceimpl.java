@@ -1,9 +1,11 @@
 package com.chess.rankhis.service.impl;
 
+import com.chess.rankhis.client.UserClient;
 import com.chess.rankhis.enty.Rank;
 import com.chess.rankhis.mapper.RankMapper;
 import com.chess.rankhis.service.RankService;
 import com.chess.rankhis.util.RankUtil;
+import com.chess.user.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,8 @@ public class RankServiceimpl implements RankService {
     private RankMapper rankMapper;
     @Autowired
     private RankUtil rankUtil;
+    @Autowired
+    private UserClient userClient;
 
     @Override
     public Double getRankGrade(String userName) {
@@ -59,7 +63,10 @@ public class RankServiceimpl implements RankService {
 
     //初始化Rank
     public void addRank(Rank rank,String userName) {
+        //查询昵称
+        UserInfo userInfoByName = userClient.getUserInfoByName(userName);
         rank.setUserName(userName);
+        rank.setNickName(userInfoByName.getNickName());
         rank.setCreated(new Date());
         rank.setUpdated(new Date());
         rank.setContinusTransport(0);

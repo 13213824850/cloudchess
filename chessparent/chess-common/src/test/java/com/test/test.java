@@ -23,21 +23,25 @@ import java.util.stream.IntStream;
 public class test {
     @Test
     public void testStream(){
-        Map<String, Integer> map= new HashMap<>();
-        map.put("1",1);
-        map.put("3",3);
-        for(String key: map.keySet()){
-            System.out.println(key);
-            System.out.println(map.get(key));
-        }
-
+        ArrayList<Book> books = new ArrayList<>();
+        books.add(new Book("1","1","1"));
+        books.add(new Book("2","2","2"));
+        books.add(new Book("3","3","3"));
+        books.add(new Book("4","4","4"));
+        String category = "1";
+        books.stream().forEach(book -> {
+            if(book.getCategory().equals(category)){
+                System.out.println(book);
+            }
+        });
     }
 
 }
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-class st{
-    private String id;
-    private int name;
+class Book{
+    private String title;
+    private String category;
+    private String auth;
 }

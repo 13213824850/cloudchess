@@ -10,12 +10,12 @@
              /></span>
       </div>
     </div>
-
+    <AlertTip :alertText="alertText" v-show="alertShow" @closeTip="closeTip"/>
     <!--消息-->
-    <div class="col-sm-4">
-      <!--剩余时间-->
+   <!-- <div class="col-sm-4">
+      &lt;!&ndash;剩余时间&ndash;&gt;
       <div class="row">剩余时间 {{overPlusTime}}秒</div>
-      <!--状态-->
+      &lt;!&ndash;状态&ndash;&gt;
       <div class="row">状态： {{gameState}}</div>
 
 
@@ -36,7 +36,7 @@
           <div class="row"></div>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 
@@ -44,11 +44,13 @@
   import {mapState} from 'vuex'
   import rankUtil from '../../utils/rankUtil'
   import {reqGetRank} from "../../api";
-
+import AlertTip from '../../components/AlterTip/AlterTip'
   export default {
     name: "WatchPlay",
     data() {
       return {
+        alertText:'',
+        alertShow:false,
         baseImageUrl: 'http://localhost:8080/static/images/',
         codeIndex: [], //棋子的位置信息
         imgstr: './images/2.png',
@@ -63,6 +65,9 @@
     created() {
       this.initCheses()
     },
+    components: {
+      AlertTip
+    },
     computed: {
       ...mapState(['cheseIndex'])
     },
@@ -72,9 +77,9 @@
       initCheses() {
         //显示双方信息
         this.cheses = this.cheseIndex.map.cheses
-        this.showRanks(this.cheseIndex.userName, this.cheseIndex.oppUserName)
+       // this.showRanks(this.cheseIndex.userName, this.cheseIndex.oppUserName)
       },
-      //显示对局双方rank
+     //显示对局双方rank
       async showRanks(userName, oppUserName) {
         let result = await reqGetRank(userName)
         this.rank = rankUtil.getRankInfo(result)
@@ -92,13 +97,19 @@
           }
         }, 1000)
       },
+      closeTip(){
+        this.alertText=''
+        this.alertShow=false
+        this.$router.push('/index')
+      }
+
     },
     watch: {
       //监听接受的数据根改棋盘
       cheseIndex: function (cheseIndex) {
-        this.overPlusTime = cheseIndex.ramainTime
-        clearInterval(this.overPlusTimerId)
-        this.showOverPlushTime()
+        //this.overPlusTime = cheseIndex.ramainTime
+        //clearInterval(this.overPlusTimerId)
+        //this.showOverPlushTime()
         this.cheseIndex = cheseIndex
         let codeIndex = cheseIndex.codeIndex
         this.$set(this.cheses[codeIndex.startX], codeIndex.startY, 0)
@@ -107,6 +118,8 @@
 
         //查看游戏是否结束
         if (cheseIndex.gameState !== 400) {
+          this.alertText = '游戏结束'
+          this.alertShow = true
           this.gameState = '游戏结束'
         }
         this.gameState = '对局中'

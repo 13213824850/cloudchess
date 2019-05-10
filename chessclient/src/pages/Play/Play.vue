@@ -247,7 +247,7 @@
       async showRanks() {
         let result = await reqGetRank(this.userName)
         this.rank = rankUtil.getRankInfo(result)
-        let oppuserName = this.cheseIndex.map.checkerBoardInfo.oppUserName
+        let oppuserName = this.cheseIndex.oppUserName
         let oppresult = await reqGetRank(oppuserName)
 
         this.otherRank = rankUtil.getRankInfo(oppresult)

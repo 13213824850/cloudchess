@@ -75,6 +75,7 @@ public class PlayService {
         String turnMe = (String) redisTemplate.opsForValue()
                 .get("turnMe:" + checkerBoardInfo.getCheckerBoardID());
         cheseIndex.add("checkerBoardInfo", checkerBoardInfo).add("cheses", cheses).add("startTime", checkerBoardInfo.getDate());
+        cheseIndex.setOppUserName(checkerBoardInfo.getOppUserName());
         cheseIndex.setTurnMe(turnMe);
         cheseIndex.setGameState(checkerBoardInfo.getGameState());
         cheseIndex.setRedUserName(checkerBoardInfo.getCode() == CheseCode.Red.getCode() ?
@@ -170,10 +171,15 @@ public class PlayService {
             gameRecord.setResult(true);
             int playTime = new Date().getMinutes() - checkerboardinfo.getDate().getMinutes();
             gameRecord.setPlayTime(playTime + "分钟");
-            historyClient.addGameRecord(gameRecord);
-            //删除对战记录
-            gameListClient.deleteGameList(checkerboardinfo.getCheckerBoardID());
-            //更改状态
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    historyClient.addGameRecord(gameRecord);
+                    //删除对战记录
+                    gameListClient.deleteGameList(checkerboardinfo.getCheckerBoardID());
+                    //更改状态
+                }
+            }).start();
             updateFriendShow(userName, Constant.LINE_ON);
             updateFriendShow(checkerboardinfo.getOppUserName(), Constant.LINE_ON);
         } else {
@@ -191,9 +197,11 @@ public class PlayService {
         log.debug("对方userName{}", checkerboardinfo.getOppUserName());
         amqpTemplate.convertAndSend("chess.play.exchange", "play.message", cheseIndex);
         sendMessage(session, cheseIndex);
-        cheseIndex.setMessageCode(GameMessage.WATCH_PLAY_MOVE.getMessageCode());
-        cheseIndex.setCheckBoardInfoId(checkerboardinfo.getCheckerBoardID());
-        amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE, MQConstant.CHESEINDEX_KEY, cheseIndex);
+        if(redisTemplate.boundSetOps(checkerboardinfo.getCheckerBoardID()) != null){
+            cheseIndex.setMessageCode(GameMessage.WATCH_PLAY_MOVE.getMessageCode());
+            cheseIndex.setCheckBoardInfoId(checkerboardinfo.getCheckerBoardID());
+            amqpTemplate.convertAndSend(MQConstant.CHESEINDEX_EXCHANGE, MQConstant.CHESEINDEX_KEY, cheseIndex);
+        }
 
     }
 
